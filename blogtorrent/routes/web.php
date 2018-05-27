@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//go index:
+Route::get('/' ,'HomeController@index');
+
+//go login:
+Route::get('/login', 'LoginController@goLogin');
+
+//go register:
+Route::get('/register', 'RegisterController@goRegister');

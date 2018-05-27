@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
-	<title>Trang chủ</title>
+	<title>Xem và tải phim torrent HD chất lượng tốt nhất</title>
 	{{-- icon --}}
 	<link rel="shortcut icon" href="{{asset('img/icon.jpg')}}">
 	<!-- Google font -->
@@ -716,7 +716,7 @@
 	<div id="numbers" class="section sm-padding">
 
 		<!-- Background Image -->
-		<div class="bg-img" style="background-image: url('./img/background2.jpg');">
+		<div class="bg-img" style="background-image: url('./img/background.jpg');">
 			<div class="overlay"></div>
 		</div>
 		<!-- /Background Image -->
@@ -1173,27 +1173,7 @@
 	</div>
 	<!-- /Contact -->
 
-
-	<!-- Footer -->
-	<footer id="footer" class="sm-padding bg-dark">
-		<!-- Container -->
-		<div class="container">
-			<!-- Row -->
-			<div class="row">
-
-				<div class="col-md-12">
-					<!-- footer copyright -->
-					<div class="footer-copyright">
-						<p>Copyright © 2018. All Rights Reserved. Designed by <a href="https://localhost:8000" style="color: white" target="_blank"> VLMT</a></p>
-					</div>
-					<!-- /footer copyright -->
-				</div>
-			</div>
-			<!-- /Row -->
-		</div>
-		<!-- /Container -->
-	</footer>
-	<!-- /Footer -->
+	@include('footer');
 
 	<!-- Back to top -->
 	<div id="back-to-top"></div>
