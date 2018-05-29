@@ -58,7 +58,7 @@
 														    <div class="overlay"></div>
 															<div class="work-content">
 																<div class="work-link">
-																	<a href="#"><i class="fa fa-external-link"></i></a>
+																	<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																	<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																</div>
 															</div>
@@ -83,7 +83,7 @@
 																<div class="overlay"></div>
 																<div class="work-content">
 																	<div class="work-link">
-																		<a href="#"><i class="fa fa-external-link"></i></a>
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
@@ -108,7 +108,7 @@
 																<div class="overlay"></div>
 																<div class="work-content">
 																	<div class="work-link">
-																		<a href="#"><i class="fa fa-external-link"></i></a>
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
@@ -133,7 +133,7 @@
 																<div class="overlay"></div>
 																<div class="work-content">
 																	<div class="work-link">
-																		<a href="#"><i class="fa fa-external-link"></i></a>
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
@@ -158,7 +158,7 @@
 																<div class="overlay"></div>
 																<div class="work-content">
 																	<div class="work-link">
-																		<a href="#"><i class="fa fa-external-link"></i></a>
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
@@ -184,7 +184,7 @@
 																<div class="overlay"></div>
 																<div class="work-content">
 																	<div class="work-link">
-																		<a href="#"><i class="fa fa-external-link"></i></a>
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
@@ -245,7 +245,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -271,7 +271,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -297,7 +297,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i>></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -323,7 +323,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -349,7 +349,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -375,7 +375,7 @@
 												<div class="overlay" style="width: 100%"></div>
 												<div class="work-content">
 													<div class="work-link">
-														<a href="#"><i class="fa fa-external-link"></i></a>
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
@@ -481,7 +481,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -496,7 +496,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work2.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -511,7 +511,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work3.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -526,7 +526,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work4.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -541,7 +541,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work5.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -556,7 +556,7 @@
 						<span>Category</span>
 						<h3>Lorem ipsum dolor</h3>
 						<div class="work-link">
-							<a href="#"><i class="fa fa-external-link"></i></a>
+							<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
 							<a class="lightbox" href="./img/work6.jpg"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
@@ -1173,7 +1173,7 @@
 	</div>
 	<!-- /Contact -->
 
-	@include('footer');
+	@include('footer')
 
 	<!-- Back to top -->
 	<div id="back-to-top"></div>

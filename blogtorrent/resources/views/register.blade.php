@@ -101,19 +101,33 @@
 		<!-- Nav -->
 		@include('navbar')
 		<!-- /Nav -->
+        <div class="container">
+                @if (!empty($error))
+                    <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 12%; right: 10px; z-index: 3;display: none"
+                        <strong style="color: red">Lỗi: </strong> {{$error}} 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
+                    <script>
+                        $('#err').fadeIn();
+                        setTimeout(function(){ 
+                            $('#err').fadeOut();
+                        }, 4000);
+                    </script>
+                @endif
 		<!-- home wrapper -->
 		<div class="home-wrapper">
-			<div class="container">
 				<div class="row">
-
 					<!-- home content -->
 					<div class="col-md-4 col-md-offset-4">
 						<div class="home-content">
                             <h3 class="white-text">Đăng Ký</h3>
-                            <form class="login100-form validate-form">
-                                   <div class="form-group">
-                                        <input class="input100" name="username" style="width: 100%" type="text" placeholder="Tên tài khoản">
+                            <form id="register" class="login100-form validate-form" method="POST" action="{{action('RegisterController@acceptRegister')}}" accept-charset="UTF-8">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div class="form-group">
+                                        <input class="input100" name="username" style="width: 100%" type="text" value="{{$user->username}}" placeholder="Tên tài khoản" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <span class="lnr lnr-envelope"></span>
@@ -121,7 +135,7 @@
                                    </div>
                 
                                    <div class="form-group">
-                                        <input class="input100" name="password" type="password" style="width: 100%" type="text" placeholder="Mật khẩu">
+                                        <input class="input100" name="password" type="password" style="width: 100%" value="{{$user->password}}" type="text" placeholder="Mật khẩu" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <span class="lnr lnr-envelope"></span>
@@ -129,7 +143,7 @@
                                    </div>
 
                                    <div class="form-group">
-                                        <input class="input100" name="phone" style="width: 100%" type="text" placeholder="Số điện thoại">
+                                        <input class="input100" name="phone" style="width: 100%" type="text" value="{{$user->phone}}" placeholder="Số điện thoại" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <span class="lnr lnr-envelope"></span>
@@ -137,7 +151,7 @@
                                    </div>
 
                                    <div class="form-group">
-                                        <input class="input100" name="email" style="width: 100%" type="text" placeholder="Địa chỉ email">
+                                        <input class="input100" name="email" style="width: 100%" type="text" value="{{$user->email}}" placeholder="Địa chỉ email" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <span class="lnr lnr-envelope"></span>
@@ -145,7 +159,7 @@
                                    </div>
 
                                    <div class="form-group">
-                                        <input class="input100" name="address" style="width: 100%" type="text" placeholder="Địa chỉ nơi ở">
+                                        <input class="input100" name="address" style="width: 100%" type="text" value="{{$user->address}}" placeholder="Địa chỉ nơi ở" required>
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
                                             <span class="lnr lnr-envelope"></span>
@@ -153,7 +167,7 @@
                                    </div>
                                     
                                     <div class="form-group">
-                                        <button class="login100-form-btn">
+                                        <button class="login100-form-btn" title="Đăng ký tài khoản">
                                             Đăng ký ngay
                                         </button>
                                     </div>
@@ -169,64 +183,7 @@
 
 	</header>
 	<!-- /Header -->
-
-	<!-- About -->
-	<div id="about" class="section md-padding">
-
-		<!-- Container -->
-		<div class="container">
-
-			<!-- Row -->
-			<div class="row">
-
-				<!-- Section header -->
-				<div class="section-header text-center">
-					<h2 class="title">Welcome to Website</h2>
-				</div>
-				<!-- /Section header -->
-
-				<!-- about -->
-				<div class="col-md-4">
-					<div class="about">
-						<i class="fa fa-cogs"></i>
-						<h3>Fully Customizible</h3>
-						<p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-						<a href="#">Read more</a>
-					</div>
-				</div>
-				<!-- /about -->
-
-				<!-- about -->
-				<div class="col-md-4">
-					<div class="about">
-						<i class="fa fa-magic"></i>
-						<h3>Awesome Features</h3>
-						<p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-						<a href="#">Read more</a>
-					</div>
-				</div>
-				<!-- /about -->
-
-				<!-- about -->
-				<div class="col-md-4">
-					<div class="about">
-						<i class="fa fa-mobile"></i>
-						<h3>Fully Responsive</h3>
-						<p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-						<a href="#">Read more</a>
-					</div>
-				</div>
-				<!-- /about -->
-
-			</div>
-			<!-- /Row -->
-
-		</div>
-		<!-- /Container -->
-
-	</div>
-	<!-- /About -->
-    
+    @include('about1')
 	<!-- Back to top -->
 	<div id="back-to-top"></div>
 	<!-- /Back to top -->

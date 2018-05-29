@@ -21,10 +21,10 @@
     
                     <!--  Main navigation  -->
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li><a href="#home">Phim mới</a></li>
-                        <li><a href="#about">Phim chiếu rạp</a></li>
-                        <li><a href="#portfolio">Trailer mới</a></li>
-                        <li><a href="#service">Phim lẻ</a></li>
+                        <li><a href="#home" title="Phim mới">Phim mới</a></li>
+                        <li><a href="#about" title="Phim chiếu rạp">Phim chiếu rạp</a></li>
+                        <li><a href="#portfolio" title="Trailer mới">Trailer mới</a></li>
+                        <li><a href="#service" title="Phim lẻ">Phim lẻ</a></li>
                         <li class="has-dropdown">
                             <a href="#blog">Thể loại</a>
                             <ul class="dropdown">
@@ -35,8 +35,8 @@
                                 <li><a href="blog-single.html">Chiến tranh</a></li>
                             </ul>
                         </li>
-                        <li id="login"><a href="{{action('LoginController@goLogin')}}">Đăng nhập</a></li>
-                        <li id="register"><a href="{{action('RegisterController@goRegister')}}">Đăng ký</a></li>
+                        <li id="login"><a href="{{action('LoginController@goLogin')}}" title="Đăng nhập">Đăng nhập</a></li>
+                        <li id="register"><a href="{{action('RegisterController@goRegister')}}" title="Đăng ký">Đăng ký</a></li>
                     </ul>
                     <!-- /Main navigation -->
     

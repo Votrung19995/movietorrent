@@ -19,3 +19,6 @@ Route::get('/login', 'LoginController@goLogin');
 
 //go register:
 Route::get('/register', 'RegisterController@goRegister');
+
+//accept Register:
+Route::post('/acceptRegister', 'RegisterController@acceptRegister');
