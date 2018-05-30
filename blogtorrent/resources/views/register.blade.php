@@ -119,64 +119,67 @@
                 @endif
 		<!-- home wrapper -->
 		<div class="home-wrapper">
-				<div class="row">
-					<!-- home content -->
-					<div class="col-md-4 col-md-offset-4">
-						<div class="home-content">
-                            <h3 class="white-text">Đăng Ký</h3>
-                            <form id="register" class="login100-form validate-form" method="POST" action="{{action('RegisterController@acceptRegister')}}" accept-charset="UTF-8">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <div class="form-group">
-                                        <input class="input100" name="username" style="width: 100%" type="text" value="{{$user->username}}" placeholder="Tên tài khoản" required>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <span class="lnr lnr-envelope"></span>
-                                        </span>
-                                   </div>
-                
-                                   <div class="form-group">
-                                        <input class="input100" name="password" type="password" style="width: 100%" value="{{$user->password}}" type="text" placeholder="Mật khẩu" required>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <span class="lnr lnr-envelope"></span>
-                                        </span>
-                                   </div>
-
-                                   <div class="form-group">
-                                        <input class="input100" name="phone" style="width: 100%" type="text" value="{{$user->phone}}" placeholder="Số điện thoại" required>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <span class="lnr lnr-envelope"></span>
-                                        </span>
-                                   </div>
-
-                                   <div class="form-group">
-                                        <input class="input100" name="email" style="width: 100%" type="text" value="{{$user->email}}" placeholder="Địa chỉ email" required>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <span class="lnr lnr-envelope"></span>
-                                        </span>
-                                   </div>
-
-                                   <div class="form-group">
-                                        <input class="input100" name="address" style="width: 100%" type="text" value="{{$user->address}}" placeholder="Địa chỉ nơi ở" required>
-                                        <span class="focus-input100"></span>
-                                        <span class="symbol-input100">
-                                            <span class="lnr lnr-envelope"></span>
-                                        </span>
-                                   </div>
-                                    
-                                    <div class="form-group">
-                                        <button class="login100-form-btn" title="Đăng ký tài khoản">
-                                            Đăng ký ngay
-                                        </button>
+				<div class="container">
+                        <div class="row">
+                                <!-- home content -->
+                                <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+                                    <div class="home-content">
+                                        <h3 class="white-text">Đăng Ký</h3>
+                                        <form id="register" class="login100-form validate-form" method="POST" action="{{action('RegisterController@acceptRegister')}}" accept-charset="UTF-8">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <div class="form-group">
+                                                    <input class="input100" name="username" style="width: 100%" type="text" value="{{$user->username}}" placeholder="Tên tài khoản" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                        <span class="lnr lnr-envelope"></span>
+                                                    </span>
+                                               </div>
+                            
+                                               <div class="form-group">
+                                                    <input class="input100" name="password" type="password" style="width: 100%" value="{{$user->password}}" type="text" placeholder="Mật khẩu" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                        <span class="lnr lnr-envelope"></span>
+                                                    </span>
+                                               </div>
+            
+                                               <div class="form-group">
+                                                    <input class="input100" name="phone" style="width: 100%" type="text" value="{{$user->phone}}" placeholder="Số điện thoại" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                        <span class="lnr lnr-envelope"></span>
+                                                    </span>
+                                               </div>
+            
+                                               <div class="form-group">
+                                                    <input class="input100" name="email" style="width: 100%" type="text" value="{{$user->email}}" placeholder="Địa chỉ email" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                        <span class="lnr lnr-envelope"></span>
+                                                    </span>
+                                               </div>
+            
+                                               <div class="form-group">
+                                                    <input class="input100" name="address" style="width: 100%" type="text" value="{{$user->address}}" placeholder="Địa chỉ nơi ở" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="symbol-input100">
+                                                        <span class="lnr lnr-envelope"></span>
+                                                    </span>
+                                               </div>
+                                                
+                                                <div class="form-group">
+                                                    <button class="login100-form-btn" title="Đăng ký tài khoản">
+                                                        Đăng ký ngay
+                                                    </button>
+                                                </div>
+                                            </form>
                                     </div>
-                                </form>
-						</div>
-					</div>
-					<!-- /home content -->
-
-				</div>
+                                </div>
+                                <!-- /home content -->
+        
+                            </div>
+                    
+                </div>
 			</div>
 		</div>
 		<!-- /home wrapper -->
