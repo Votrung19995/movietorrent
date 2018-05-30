@@ -7,6 +7,7 @@ use App\Customer;
 use App\UserService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Cookie;
 
 class RegisterController extends Controller
 {
@@ -38,6 +39,7 @@ class RegisterController extends Controller
 
         //check User exist:
         if(UserService::checkUserIsExist($username)){
+            $user->password = '';
             return view('register')->with(array('error' => $username.' đã tồn tại, vui lòng nhập tên khác!','user' => $user));
         }
         else{
@@ -48,11 +50,13 @@ class RegisterController extends Controller
             //get user by username:
             $userSaved = UserService::getUserByUserName($username);
 
-            if(empty($userSaved)){
-                $user->password = '';
-                return view('register')->with(array('error' => 'Lỗi đăng ký!','user' => $user));
-            }
-                return "Dang ky thanh cong !!!!";
+                if(empty($userSaved)){
+                    $user->password = '';
+                    return view('register')->with(array('error' => 'Lỗi đăng ký!','user' => $user));
+                }
+
+                //set cookie:
+                return Redirect::to('/sucess')->withCookie(Cookie::make('isRegister','true',2));
             }
             else{
                 $user->password = '';

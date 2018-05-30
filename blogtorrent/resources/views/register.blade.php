@@ -93,7 +93,7 @@
 	<!-- Header -->
 	<header id="home">
 		<!-- Background Image -->
-		<div class="bg-img" style="background-image: url('./img/background.jpg');">
+            <div class="bg-img" style="background-image: url('{{asset('img/background.jpg')}}');">
 			<div class="overlay"></div>
 		</div>
 		<!-- /Background Image -->
@@ -176,9 +176,7 @@
                                     </div>
                                 </div>
                                 <!-- /home content -->
-        
-                            </div>
-                    
+                        </div>
                 </div>
 			</div>
 		</div>

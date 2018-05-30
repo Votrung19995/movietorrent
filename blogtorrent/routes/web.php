@@ -20,5 +20,14 @@ Route::get('/login', 'LoginController@goLogin');
 //go register:
 Route::get('/register', 'RegisterController@goRegister');
 
-//accept Register:
-Route::post('/acceptRegister', 'RegisterController@acceptRegister');
+Route::prefix('auth')->group(function () {
+    //accept Register:
+    Route::post('/register', 'RegisterController@acceptRegister');
+});
+
+//Redirect
+Route::prefix('redirect')->group(function () {
+    //sucess
+    Route::get('/sucess', 'RedirectController@goSucess');
+});
+

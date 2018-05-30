@@ -45,7 +45,7 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 class="text-mutex">Phim mới ra mắt <img style="margin-bottom: 3px" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id ="newmovie" class="text-mutex" style="display: none">Phim mới ra mắt <img style="margin-bottom: 3px" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
                     </div>
                 </div>
                 <div class="row">
@@ -205,7 +205,7 @@
                                 </div>
 						</div>
 						<div class ="col-md-3">
-						   <img class="img-responsive" src="{{asset('img/right-2.jpg')}}" style="height: 236px"/>
+						   <img id="imageqc" class="img-responsive" src="{{asset('img/right-2.jpg')}}" style="height: 236px; display: none"/>
 					    </div>
                         <script>
                             $('.owl-carousel').owlCarousel({
@@ -231,7 +231,7 @@
 				<br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 class="text-mutex">Phim lẻ mới cập nhật <img style="margin-bottom: 3px" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id="updatemovie" class="text-mutex" style="display: none">Phim lẻ mới cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
 					</div>
 					<div class="col-md-8">
 							<a href="#" class="pull-right">Xem thêm ..</a>
@@ -1188,6 +1188,14 @@
 			<span></span>
 		</div>
 	</div>
+
+	{{-- //hiden h1: --}}
+
+	<script>
+		$('#imageqc').fadeIn(3000);
+		$('#updatemovie').fadeIn(3000);
+		$('#newmovie').fadeIn(3000);
+	</script>
 
 </body>
 
