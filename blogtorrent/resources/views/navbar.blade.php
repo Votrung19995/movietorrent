@@ -6,8 +6,8 @@
                         <!-- Logo -->
                         <div class="navbar-brand">
                                 <a href="{{action('HomeController@index')}}">
-                                <img class="logo" src="{{asset('img/logo.png')}}" alt="logo">
-                                <img class="logo-alt" src="{{asset('img/logo-alt.png')}}" alt="logo">
+                                <img class="logo" src="{{asset('img/logo5.png')}}" alt="logo">
+                                <img class="logo-alt" src="{{asset('img/logo4.png')}}" alt="logo">
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -41,9 +41,21 @@
                                 <ul class="dropdown">
                                     <li><a href="blog-single.html">Tải về Bit torrent</a></li>
                                 </ul>
+                        </li>
+
+                         {{-- set user cokkie: --}}
+                        @if(!empty(request()->cookie('username')))
+                            <li class="has-dropdown">
+                                    <a href="#blog" style="color: #FFA533"><img src="{{{ asset('/img/user.png') }}}" alt="Smiley face" height="20px" width="20px"> {{ request()->cookie('username') }}</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Thông tin</a></li>
+                                        <li><a href="{{url('/logOut')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
+                                    </ul>
                             </li>
-                        <li id="login"><a href="{{action('LoginController@goLogin')}}" title="Đăng nhập">Đăng nhập</a></li>
-                        <li id="register"><a href="{{action('RegisterController@goRegister')}}" title="Đăng ký">Đăng ký</a></li>
+                        @else
+                            <li id="login"><a href="{{action('LoginController@goLogin')}}" title="Đăng nhập">Đăng nhập</a></li>
+                            <li id="register"><a href="{{action('RegisterController@goRegister')}}" title="Đăng ký">Đăng ký</a></li>
+                        @endif
                     </ul>
                     <!-- /Main navigation -->
     

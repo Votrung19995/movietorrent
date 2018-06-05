@@ -93,7 +93,7 @@
 	<!-- Header -->
 	<header id="home">
 		<!-- Background Image -->
-		<div class="bg-img" style="background-image: url('./img/background.jpg');">
+		<div class="bg-img" style="background-image: url('{{asset('img/background.jpg')}}');">
 			<div class="overlay"></div>
 		</div>
 		<!-- /Background Image -->
@@ -101,18 +101,35 @@
 		<!-- Nav -->
 		@include('navbar')
 		<!-- /Nav -->
+        <div class="container">
+                @if (!empty($error))
+                    <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 12%; right: 10px; z-index: 3;display: none"
+                        <strong style="color: red">Lỗi: </strong> {{$error}} 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
+                    <script>
+                        $('#err').fadeIn();
+                        setTimeout(function(){ 
+                            $('#err').fadeOut();
+                        }, 4000);
+                    </script>
+                @endif
+        </div>
 		<!-- home wrapper -->
 		<div class="home-wrapper">
 			<div class="container">
+                
 				<div class="row">
-
 					<!-- home content -->
 					<div class="col-md-4 col-md-offset-4">
 						<div class="home-content">
                             <h3 class="white-text">Đăng Nhập</h3>
-                            <form class="login100-form validate-form">
-                                   <div class="form-group">
+                            <form class="login100-form validate-form" id="login" method="POST" action="{{action('LoginController@login')}}" accept-charset="UTF-8">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <div class="form-group">
                                         <input class="input100" name="username" style="width: 100%" type="text" placeholder="Tên tài khoản">
                                         <span class="focus-input100"></span>
                                         <span class="symbol-input100">
@@ -138,7 +155,7 @@
                                     <ul style="display: inline-block; list-style-type: none">
                                        <li style="margin-right:  20px; display: inline-block"><a class="btn btn-primary">FACEBOOK</a></li>
                                        <li style="display: inline-block;"><a class="btn btn-warning">GOOGLE</a></li>
-                                    </ul>
+                                    </ul>+-
                                 </form>
 						</div>
 					</div>

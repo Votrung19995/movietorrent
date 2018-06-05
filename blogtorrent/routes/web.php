@@ -20,14 +20,27 @@ Route::get('/login', 'LoginController@goLogin');
 //go register:
 Route::get('/register', 'RegisterController@goRegister');
 
+//go register:
+Route::get('/logOut', 'LoginController@logOut');
+
 Route::prefix('auth')->group(function () {
     //accept Register:
     Route::post('/register', 'RegisterController@acceptRegister');
+
+    //accept login:
+    Route::post('/login', 'LoginController@login');
 });
 
 //Redirect
 Route::prefix('redirect')->group(function () {
     //sucess
-    Route::get('/sucess', 'RedirectController@goSucess');
+    Route::get('/success', 'RedirectController@goSucess')->middleware('isRegister');
+    
+    //go 404 page
+    Route::get('/404', 'RedirectController@go404');
+
 });
+
+//go Home page
+Route::get('/goHome', 'RedirectController@goHome');
 

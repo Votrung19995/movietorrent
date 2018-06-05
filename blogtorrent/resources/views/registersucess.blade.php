@@ -104,7 +104,7 @@
         <div class="container">
         <div class="row">
                <div class="col-md-12">
-                    <div class="panel panel-info" style="margin-top: 5%">
+                    <div class="panel panel-info" style="margin-top: 8%">
                             <div class="panel-heading">Thông tin</div>
                             <div class="panel-body">
                                 <h4>Chúc mừng tài khoản đã đăng ký thành công.</h4>
@@ -113,7 +113,7 @@
                                 <p>Bạn có thể xem và tải về torrent các bộ phim chất lượng HD tốt nhất.</p>
                                 <p>Link được cập nhật thường xuyên.</p>
                                 <p>Nào hãy cùng tận hưởng</p>
-                                <p><a style="color: blue" href="{{url('/')}}"><span class="fa fa-home"></span> Quay lại trang chủ</a></p>
+                                <p><a style="color: blue" href="{{url('/goHome')}}"><span class="fa fa-home"></span> Quay lại trang chủ</a></p>
                             </div>
                      </div>
                </div>

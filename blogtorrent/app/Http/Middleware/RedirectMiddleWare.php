@@ -15,6 +15,13 @@ class RedirectMiddleWare
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $value = $request->cookie('isRegister');
+        
+        if(empty($value)){
+            return redirect('/redirect/404');
+        }
+        else{
+            return $next($request);
+        }
     }
 }

@@ -8,6 +8,7 @@ use App\UserService;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Cookie;
+use Redirect;
 
 class RegisterController extends Controller
 {
@@ -56,7 +57,7 @@ class RegisterController extends Controller
                 }
 
                 //set cookie:
-                return Redirect::to('/sucess')->withCookie(Cookie::make('isRegister','true',2));
+                return Redirect::to('/redirect/success')->withCookie(Cookie::make('isRegister','true',1));
             }
             else{
                 $user->password = '';
