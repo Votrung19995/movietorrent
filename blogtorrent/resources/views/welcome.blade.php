@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
 
 	<!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
 
 	<!-- jQuery Plugins -->
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
@@ -38,7 +38,8 @@
 </head>
 
 <body>
-    @include('navbar') 
+	@include('navbar')
+	@include('search')
 	<!-- Header -->
 	
 			<div class="container">
@@ -1195,6 +1196,7 @@
 		$('#imageqc').fadeIn(3000);
 		$('#updatemovie').fadeIn(3000);
 		$('#newmovie').fadeIn(3000);
+		$('#searchbox').fadeIn(3000);
 	</script>
 
 </body>

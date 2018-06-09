@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\UserService;
 use Cookie;
 use App\Customer;
+use App\Role;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +28,25 @@ class LoginController extends Controller
         if(!empty($user)){
            //check password match:
            if (Hash::check($password, $user->password)) {
-              
-              //set cookie:
-              return Redirect::to('/')->withCookie(Cookie::make('username',$user->username,60));
+              $role = Role::where('user_id',$user->user_id)->first();
+              if(empty($role)){
+                  //set into model:
+                 $user = new Customer;
+                 $user->username = $username;
+                 $user->password = $password;
+                 return view('login')->with(array('error' => '401 không có quyền truy cập !', 'user'=>$user));
+              }
+              else{
+                  if($role->name == 'admin'){
+                      error_log('=====>> IS ADMIN::: '.$role->name);
+                      //set cookie:
+                      return Redirect::to('/admin/home')->withCookie(Cookie::make('username',$user->username,60));
+                  }
+                  else{
+                      //set cookie:
+                      return Redirect::to('/')->withCookie(Cookie::make('username',$user->username,60));
+                  }
+              }
            }
            else{
               //set into model:

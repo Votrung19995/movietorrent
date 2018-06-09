@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\UserService;
+use App\Role;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 use Cookie;
@@ -55,7 +56,13 @@ class RegisterController extends Controller
                     $user->password = '';
                     return view('register')->with(array('error' => 'Lỗi đăng ký!','user' => $user));
                 }
-
+                else{
+                     //set role:
+                    $role = new Role;
+                    $role->user_id = $userSaved->user_id;
+                    $role->name = 'guest';
+                    $role->save();
+                }
                 //set cookie:
                 return Redirect::to('/redirect/success')->withCookie(Cookie::make('isRegister','true',1));
             }

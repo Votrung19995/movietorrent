@@ -44,3 +44,9 @@ Route::prefix('redirect')->group(function () {
 //go Home page
 Route::get('/goHome', 'RedirectController@goHome');
 
+//go admin page:
+Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'],function () {
+    //go admin page:
+    Route::get('/home', 'adminController@goAdmin');
+});
+

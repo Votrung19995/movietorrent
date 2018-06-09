@@ -154,8 +154,8 @@
                                     <h6 class="white-text"> Hoặc đăng nhập</h6>
                                     <ul style="display: inline-block; list-style-type: none">
                                        <li style="margin-right:  20px; display: inline-block"><a class="btn btn-primary">FACEBOOK</a></li>
-                                       <li style="display: inline-block;"><a class="btn btn-warning">GOOGLE</a></li>
-                                    </ul>+-
+                                       <li style="display: inline-block;"><a class="btn btn-warning">GOOGLE +</a></li>
+                                    </ul>
                                 </form>
 						</div>
 					</div>
