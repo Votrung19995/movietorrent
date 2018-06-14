@@ -49,6 +49,15 @@
                                     <a href="#blog" style="color: #FFA533"><img src="{{{ asset('/img/user.png') }}}" alt="Smiley face" height="20px" width="20px"> {{ request()->cookie('username') }}</a>
                                     <ul class="dropdown">
                                         <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Thông tin</a></li>
+                                        @if(!empty(request()->cookie('check')))
+                                            @php
+                                               $checkUser = request()->cookie('check');
+                                            @endphp
+
+                                            @if($checkUser == 'admin')
+                                               <li><a href="{{url('/admin/home')}}"><i class="fa fa-wrench" aria-hidden="true"></i> Quản lý</a></li>
+                                            @endif
+                                        @endif
                                         <li><a href="{{url('/logOut')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a></li>
                                     </ul>
                             </li>

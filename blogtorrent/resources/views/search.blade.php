@@ -14,16 +14,16 @@
 						</div>
 
 						<div class="col-md-2">
-						<h5 style="text-align: center; margin-top: 11px; color: #3f51b5 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h5-new.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> PHIM  MỚI</a></h5>
+						<h5 style="text-align: center; margin-top: 12px; color: #3f51b5 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h5-new.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> PHIM  MỚI</a></h5>
 						</div>
 
 						<div class="col-md-2">
-						    <h5 style="text-align: center; margin-top: 11px; color: #887568 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h2-top.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> TOP IMDB 2018</a></h5>
+						    <h5 style="text-align: center; margin-top: 12px; color: #887568 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h2-top.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> TOP IMDB 2018</a></h5>
 						</div>
 
 						
 						<div class="col-md-3">
-						    <h5 style="text-align: center; margin-top: 11px; color: #887568 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h2-hay.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> PHIM HAY TUYỂN CHỌN</a></h5>
+						    <h5 style="text-align: center; margin-top: 12px; color: #887568 ! important"><a href="#" class="hov" style="color: #3f51b5;opacity: 0.9"><img src="{{asset('img/h2-hay.png')}}" style="height: 40px; width: 40px; display: inline; margin:0px" class="img-responsive"> PHIM HAY TUYỂN CHỌN</a></h5>
 						</div>
 					</div>
 		   </div>

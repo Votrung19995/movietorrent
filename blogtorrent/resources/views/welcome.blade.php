@@ -235,7 +235,7 @@
                         <h4 id="updatemovie" class="text-mutex" style="display: none">Phim lẻ mới cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
 					</div>
 					<div class="col-md-8">
-							<a href="#" class="pull-right">Xem thêm ..</a>
+							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 					</div>
 				</div>
 				<div class="row">

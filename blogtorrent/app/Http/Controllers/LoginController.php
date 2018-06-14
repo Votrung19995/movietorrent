@@ -40,7 +40,7 @@ class LoginController extends Controller
                   if($role->name == 'admin'){
                       error_log('=====>> IS ADMIN::: '.$role->name);
                       //set cookie:
-                      return Redirect::to('/admin/home')->withCookie(Cookie::make('username',$user->username,60));
+                      return Redirect::to('/admin/home')->withCookie(Cookie::make('username',$user->username,60))->withCookie(Cookie::make('check','admin',60));
                   }
                   else{
                       //set cookie:
@@ -71,6 +71,6 @@ class LoginController extends Controller
     public function logOut(){
       //set cookie:
       sleep(1);
-      return Redirect::to('/')->withCookie(Cookie::forget('username'));
+      return Redirect::to('/')->withCookie(Cookie::forget('username'))->withCookie(Cookie::forget('check'));
     }
 }
