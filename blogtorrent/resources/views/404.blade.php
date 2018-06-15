@@ -10,7 +10,7 @@
 	<title>404 Not found</title>
 
 	{{-- icon --}}
-	<link rel="shortcut icon" href="{{asset('img/icon.jpg')}}">
+	<link rel="shortcut icon" href="{{asset('img/h5-new.png')}}">
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 

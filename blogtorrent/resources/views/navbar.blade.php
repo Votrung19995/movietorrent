@@ -43,7 +43,7 @@
                                 </ul>
                         </li>
 
-                         {{-- set user cokkie: --}}
+                        {{-- set user cokkie: --}}
                         @if(!empty(request()->cookie('username')))
                             <li class="has-dropdown">
                                     <a href="#blog" style="color: #FFA533"><img src="{{{ asset('/img/user.png') }}}" alt="Smiley face" height="20px" width="20px"> {{ request()->cookie('username') }}</a>
