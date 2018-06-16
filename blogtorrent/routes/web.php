@@ -29,6 +29,10 @@ Route::prefix('auth')->group(function () {
 
     //accept login:
     Route::post('/login', 'LoginController@login');
+
+    //google login:
+    Route::get('/google', 'LoginController@redirectToProvideGoogle');
+    Route::get('/google/callback', 'LoginController@handleProviderCallbackGoogle');
 });
 
 //Redirect

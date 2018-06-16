@@ -153,8 +153,8 @@
                 
                                     <h6 class="white-text"> Hoặc đăng nhập</h6>
                                     <ul style="display: inline-block; list-style-type: none">
-                                       <li style="margin-right:  20px; display: inline-block"><a class="btn btn-primary">FACEBOOK</a></li>
-                                       <li style="display: inline-block;"><a class="btn btn-warning">GOOGLE +</a></li>
+                                       <li style="margin-right:  20px; display: inline-block"><a class="btn btn-primary" title="Đăng nhập bằng tài khoản facebook" data-toggle="modal" data-target="#exampleModal">FACEBOOK</a></li>
+                                       <li style="display: inline-block;"><a href="{{url('auth/google')}}" class="btn btn-warning" title="Đăng nhập bằng tài khoản gmail">GOOGLE +</a></li>
                                     </ul>
                                 </form>
 						</div>
@@ -188,6 +188,27 @@
     <script>
             $('#login').addClass("active");
     </script>
+
+  <!-- Button trigger modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thông báo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Chức năng này hiện tại chưa cập nhật.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Okay, tôi hiểu</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

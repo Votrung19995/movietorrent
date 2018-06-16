@@ -10,6 +10,7 @@ use App\Role;
 use Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -65,6 +66,37 @@ class LoginController extends Controller
               return view('login')->with(array('error' => 'Tên đăng nhập hoặc mật khẩu không đúng !', 'user'=>$user));
         }
         
+    }
+
+    public function redirectToProvideGoogle(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleProviderCallbackGoogle(){
+        $user = Socialite::driver('google')->user();
+        //check username as getName:
+        if(!empty($user)){
+            $username = $user->getName();
+            $userDB = UserService::getUserByUserName($username);
+            
+            if(empty($userDB)){
+                //save user into DB:
+                $userSave = new Customer;
+                $userSave->username = $user->getName();
+                $userSave->email = $user->getEmail();
+                //hasing password:
+                $hasshedPassword = Hash::make('google');
+                $userSave->password = $hasshedPassword;
+                $userSave->save();
+            }
+            
+            //login witch google susscess:
+            //set cookie:
+            return Redirect::to('/')->withCookie(Cookie::make('username',$user->getName(),60));
+        }
+        else{
+            return redirect('/redirect/404');
+        }
     }
 
     //Log out user
