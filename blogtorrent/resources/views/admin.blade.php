@@ -27,6 +27,10 @@
   <link rel="stylesheet"  href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+  <script src="{{ asset('js/ckfinder/ckfinder.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -44,25 +48,80 @@
             <div class="card">
               <div class="card-header d-flex p-0">
                 <h3 class="card-title p-3">
-                  <i class="fa fa-clipboard" aria-hidden="true"></i>
-                  <b>Đăng tin</b>
+                  <i class="fa fa-share-square-o" aria-hidden="true"></i> Đăng bài viết
                 </h3>
                 <ul class="nav nav-pills ml-auto p-2">
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                  </li>
+                  </li> --}}
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;"></div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                </div>
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="english">Tiêu đề tiếng anh</label>
+                      <input type="text" name="english" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="vietnamese">Tiêu đề tiếng việt</label>
+                      <input type="text" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                    </div>
+                    <div class="form-group col-md-12"> 
+                      <label>Nội dung và hình ảnh</label>
+                      <textarea class="form-control" name="content" rows="4"></textarea>
+                      <small class="form-text text-muted">Bắt buộc thêm vào ảnh đại diện cho bài viết</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="english">Điểm IDMB</label>
+                        <input type="text" name="idmb" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Năm sản xuất và phát hành</label>
+                        <input type="text" name="year" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="english">Chất lượng phim</label>
+                        <select name="resolution" class="form-control">
+                            <option>Bản đẹp (HD)</option>
+                            <option>Bản vừa (FHD)</option>
+                            <option>Bản chất lượng kém (CAM)</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Quốc gia</label>
+                        <select name="globalid" class="form-control">
+                            @foreach($globals as $global)
+                              <option value="{{$global->globalid}}">{{$global->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Đánh giá phim</label>
+                        <input type="text" name="feedback" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Thể loại phim</label>
+                        <select name="categoryid" class="form-control">
+                            @foreach($categorys as $category)
+                              <option value="{{$category->categoryid}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Đạo diễn sản xuất</label>
+                        <input type="text" name="director" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
+                    <div class="form-group col-md-12"> 
+                        <label for="english">Upload files</label>
+                        <input type="text" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i> Post bài</button>
+                </form>
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -333,12 +392,21 @@
     </section>
     <!-- /.content -->
   </div>
+  <script>
+      CKEDITOR.replace( 'content', {
+                   filebrowserBrowseUrl: '{{ asset('js/ckfinder/ckfinder.html') }}',
+                   filebrowserImageBrowseUrl: '{{ asset('js/ckfinder/ckfinder.html?type=Images') }}',
+                   filebrowserFlashBrowseUrl: '{{ asset('js/ckfinder/ckfinder.html?type=Flash') }}',
+                   filebrowserUploadUrl: '{{ asset('js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                   filebrowserImageUploadUrl: '{{ asset('js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                   filebrowserFlashUploadUrl: '{{ asset('js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'} );
+  </script>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2014-2018 <a href="#">VLMT</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.0-alpha
+      <b>Phiên bản admin thử nghiệm</b> 1.0.0
     </div>
   </footer>
 

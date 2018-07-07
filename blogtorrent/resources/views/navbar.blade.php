@@ -35,11 +35,23 @@
                                     <li><a href="blog-single.html">Chiến tranh</a></li>
                                 </ul>
                         </li>
+                        <li class="has-dropdown">
+                            <a href="#blog">Quốc gia</a>
+                            <ul class="dropdown">
+                                <li><a href="blog-single.html">Mỹ</a></li>
+                                <li><a href="blog-single.html">Nhật Bản</a></li>
+                                <li><a href="blog-single.html">Trung Quốc</a></li>
+                                <li><a href="blog-single.html">Hồng Kong</a></li>
+                                <li><a href="blog-single.html">Thái Lan</a></li>
+                                <li><a href="blog-single.html">Hàn Quốc</a></li>
+                            </ul>
+                       </li>
                         <li><a href="#portfolio" title="Trailer mới">Trailer mới</a></li>
                         <li class="has-dropdown">
                                 <a href="#blog">Công cụ</a>
                                 <ul class="dropdown">
                                     <li><a href="blog-single.html">Tải về Bit torrent</a></li>
+                                    <li><a href="blog-single.html">Trang get link download</a></li>
                                 </ul>
                         </li>
 
