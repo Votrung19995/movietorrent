@@ -28,9 +28,9 @@ class AdminController extends Controller
         $cate = Category::all();
         $glo = Glo::all();
         $english = $request->input('english');
-        $vietnamese = $request->input('vietnamese');
+        $vietnamese = $request->input('vn');
         $fullpath = $request->input('content');
-        $idmb = $request->input('idmb');
+        $idmb = $request->input('score');
         $year = $request->input('year');
         $resolution = $request->input('resolution');
         $global = $request->input('global');
@@ -38,35 +38,70 @@ class AdminController extends Controller
         $category = $request->input('category');
         $director = $request->input('director');
         error_log("POST: =>".$fullpath);
+        if(empty($fullpath)){
+            $fullpath = "<p></p>";
+        }
         $dom = HtmlDomParser::str_get_html($fullpath);
-        $imagePath = '';
-
         //set value for Inventory:
         $inventory = new Inventory;
         $inventory->english = $english;
         $inventory->vietnamese = $vietnamese;
         $inventory->fullpath = $fullpath;
-        $inventory->idmd = $idmb;
+        $inventory->idmb = $idmb;
         $inventory->year = $year;
         $inventory->resolution = $resolution;
         $inventory->globalid = $global;
         $inventory->feedback = $feedback;
-        $inventory->directory = $director;
+        $inventory->director = $director;
+        $inventory->categoryid = $category;
 
         //set sesion laravel:
         session(['inventory'=>$inventory]);
 
         if(empty($dom->find('img'))){
             error_log("EMPTY=========>>>".$err."IVEN PATH: ".$inventory->fullpath);
-            //set cookie:
-            return view('admin')->with(array('err'=>'Vui lòng chọn ảnh và thử lại.', 'categorys'=>$cate, 'globals'=>$glo, 'inventory'=>$inventory));
+            error_log('CATE: '. $inventory->categoryid);
+            //set session:
+            //set session for user:
+            session(['inventory'=>$inventory]);
+            //get name by ID global:
+            $gl = Glo::where('globalid', $inventory->globalid)->first();
+            //set session for user:
+            session(['globalName'=>$gl]);
+            //get name by ID category:
+            $c = Category::where('categoryid', $inventory->categoryid)->first();
+            //set session for user:
+            session(['categoryName'=>$c]);
+            //set session for err:
+            session(['err'=>'Vui lòng chọn ảnh và thử lại.']);
+            return Redirect::to('/admin/home');
         }
         else{
             //SAVE:
             $imagePath = $dom->find('img')[0]->src;
             $path = $this->splitImg($imagePath);
+            error_log("PATHHHHHHHH++++++++".$path);
             $texts = $this->splitText($fullpath);
-            return  $content;
+            $ct = '';
+            foreach($texts as $text){
+                $ct = $ct.$text;
+            }
+            //set value:
+            $inventory->image = $path;
+            $inventory->content = $ct;
+
+            if($inventory->save()){
+               //set session for err:
+               session(['err'=>'Đã đăng tin, thông tin đã được cập nhật trong danh sách']);
+               session()->forget('categoryName');
+               session()->forget('inventory');
+               session()->forget('globalName');
+            }
+            else{
+               //set session for err:
+               session(['err'=>'Lỗi đăng tin']);
+            }
+            return Redirect::to('/admin/home');
         }
     }
 
@@ -91,7 +126,7 @@ class AdminController extends Controller
     public function splitImg($content){
         $paths = explode('images/', $content);
         $img ='';
-        if(empty($paths)){
+        if(!empty($paths)){
             $img = $paths[1];
         }
         return $img;

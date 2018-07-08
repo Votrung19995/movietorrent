@@ -34,22 +34,44 @@
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="container-fluid">
-      @if (!empty($err))
-        <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 11%; right: 12px; z-index: 3;display: none"
-                <strong style="color: red">Lỗi: {{$err}} </strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-        </button>
-      @endif
+              @php
+                     use App\Inventory;
+
+                     $inventory = new Inventory;
+                     if(!empty(session('inventory'))){
+                        $inventory = session('inventory');
+                     }
+                     $error = session('err');
+                @endphp
+
+                @if (!empty($error))
+                    @if($error == 'Vui lòng chọn ảnh và thử lại.' || $error == 'Lỗi đăng tin')
+                      <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 10%; right: 12px; z-index: 3;display: none"
+                        <strong style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Lỗi: </strong> {{$error}} 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                    @else
+                      <div id="err" class="alert alert-success alert-dismissible ms-success" role="alert" style="position: absolute;top: 10%; right: 12px; z-index: 3;display: none"
+                        <strong style="color: white"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Yeah: </strong> {{$error}} 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    @endif
+                    <script>
+                        $('#err').fadeIn();
+                        setTimeout(function(){ 
+                            $('#err').fadeOut();
+                            @php
+                              session()->forget('err');    
+                            @endphp
+                        }, 4000);
+                    </script>
+                @endif
     </div>
 
-    <script>
-        //fade out:
-        $('#err').fadeIn();
-        setTimeout(function(){
-            $('#err').fadeOut();
-        }, 4000);
-    </script>
 <div class="wrapper">
     <!-- /.content-header -->
     @include('slidebar')
@@ -81,38 +103,61 @@
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="english">Tiêu đề tiếng anh</label>
-                      <input type="text" value="{{$inventory->english}}" name="english" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                      <input type="text" value="{{$inventory->english}}" name="english" class="form-control" placeholder="Vui lòng nhập vào (*)" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="vietnamese">Tiêu đề tiếng việt</label>
-                      <input type="text" value="{{$inventory->vietnamese}}" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                      <label>Tiêu đề tiếng việt</label>
+                      <input type="text" value="{{$inventory->vietnamese}}" name="vn" class="form-control" placeholder="Vui lòng nhập vào (*)" required>
                     </div>
                     <div class="form-group col-md-12"> 
                       <label>Nội dung và hình ảnh</label>
-                      <textarea class="form-control" name="content"  id="content" rows="4">{{$inventory->fullpath}}</textarea>
+                      <textarea class="form-control" name="content"  id="content" rows="4" required>{{$inventory->fullpath}}</textarea>
                       <small class="form-text text-muted">Bắt buộc thêm vào ảnh đại diện cho bài viết</small>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="english">Điểm IDMB</label>
-                        <input type="text" value="{{$inventory->idmb}}" name="idmb" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                        <label>Điểm IDMB</label>
+                        <input type="text" value="{{$inventory->idmb}}" name="score" class="form-control" placeholder="Vui lòng nhập vào (*)" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Năm sản xuất và phát hành</label>
-                        <input type="text" value="{{$inventory->year}}" name="year" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                        <input type="text" value="{{$inventory->year}}" name="year" class="form-control" placeholder="Vui lòng nhập vào (*)" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="english">Chất lượng phim</label>
                         <select name="resolution" class="form-control">
-                            <option>Bản đẹp (HD)</option>
-                            <option>Bản vừa (FHD)</option>
-                            <option>Bản chất lượng kém (CAM)</option>
+                            @if($inventory->resolution == 'Bản đẹp (HD)')
+                                <option selected = "selected">Bản đẹp (HD)</option>
+                            @else
+                                <option>Bản đẹp (HD)</option>
+                            @endif
+
+                            @if($inventory->resolution == 'Bản vừa (FHD)')
+                                <option selected = "selected">Bản vừa (FHD)</option>
+                            @else
+                                <option>Bản vừa (FHD)</option>
+                            @endif
+                           
+                            @if($inventory->resolution == 'Bản chất lượng kém (CAM)')
+                                <option selected = "selected">Bản chất lượng kém (CAM)</option>
+                            @else
+                                <option>Bản chất lượng kém (CAM)</option>
+                            @endif
+                          
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Quốc gia</label>
                         <select name="global" class="form-control">
                             @foreach($globals as $global)
-                              <option value="{{$global->globalid}}">{{$global->name}}</option>
+                              @if(!empty(session('globalName')))
+                                @if(session('globalName')->name == $global->name) 
+                                <option selected = "selected" value="{{$global->globalid}}">{{$global->name}}</option>
+                                @else
+                                  <option value="{{$global->globalid}}">{{$global->name}}</option>
+                                @endif
+                              @else
+                                 <option value="{{$global->globalid}}">{{$global->name}}</option>
+                              @endif
                             @endforeach
                         </select>
                     </div>
@@ -124,7 +169,15 @@
                         <label>Thể loại phim</label>
                         <select name="category" class="form-control">
                             @foreach($categorys as $category)
-                              <option value="{{$category->categoryid}}">{{$category->name}}</option>
+                              @if(!empty(session('categoryName')))
+                                  @if(session('categoryName')->name == $category->name) 
+                                    <option selected = "selected" value="{{$category->categoryid}}">{{$category->name}}</option>
+                                  @else
+                                    <option value="{{$category->categoryid}}">{{$category->name}}</option>
+                                  @endif
+                              @else
+                                 <option value="{{$category->categoryid}}">{{$category->name}}</option>
+                              @endif
                             @endforeach
                         </select>
                     </div>
