@@ -27,10 +27,13 @@
   <link rel="stylesheet"  href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  {{-- DROPZONE --}}
+  <link rel="stylesheet"  href="{{asset('css/dropzone.css')}}">
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
   <script src="{{ asset('js/ckfinder/ckfinder.js') }}"></script>
+  <script src="{{ asset('js/dropzone.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="container-fluid">
@@ -45,7 +48,7 @@
                 @endphp
 
                 @if (!empty($error))
-                    @if($error == 'Vui lòng chọn ảnh và thử lại.' || $error == 'Lỗi đăng tin')
+                    @if($error == 'Vui lòng chọn ảnh và thử lại.' || $error == 'Lỗi đăng tin' || $error == 'Vui lòng upload file')
                       <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 10%; right: 12px; z-index: 3;display: none"
                         <strong style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Lỗi: </strong> {{$error}} 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -98,7 +101,7 @@
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form method="POST" action="{{action('AdminController@post')}}" accept-charset="UTF-8">
+                <form method="POST" action="{{action('AdminController@post')}}" accept-charset="UTF-8" enctype="multipart/form-data">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-row">
                     <div class="form-group col-md-6">
@@ -187,7 +190,7 @@
                     </div>
                     <div class="form-group col-md-12"> 
                         <label for="english">Upload files</label>
-                        <input type="text" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào">
+                        <div class="dropzone" id="my-dropzone" name="myDropzone"></div>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i> Post bài</button>
@@ -195,6 +198,49 @@
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
+
+            {{-- SETING DROPZONE --}}
+            <script type="text/javascript">
+              Dropzone.options.myDropzone= {
+                  url: '{{action('AdminController@post')}}',
+                  headers: {
+                      'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+                  },
+                  autoProcessQueue: true,
+                  uploadMultiple: true,
+                  parallelUploads: 5,
+                  maxFiles: 1000,
+                  maxFilesize: 5,
+                  acceptedFiles: ".torrent",
+                  dictFileTooBig: 'Image is bigger than 5MB',
+                  addRemoveLinks: true,
+                  removedfile: function(file) {
+                  var name = file.name;    
+                  name =name.replace(/\s+/g, '-').toLowerCase();    /*only spaces*/
+                  $.ajax({
+                       type: 'POST',
+                       url: '{{ url('admincp/deleteImg') }}',
+                       headers: {
+                            'X-CSRF-TOKEN': '{!! csrf_token() !!}'
+                        },
+                       data: "id="+name,
+                       dataType: 'html',
+                       success: function(data) {
+                           $("#msg").html(data);
+                       }
+                  });
+                 var _ref;
+                 if (file.previewElement) {
+                   if ((_ref = file.previewElement) != null) {
+                     _ref.parentNode.removeChild(file.previewElement);
+                   }
+                 }
+                 return this._updateMaxFilesReachedClass();
+               },
+               previewsContainer: null,
+               hiddenInputContainer: "body",
+              }
+           </script>
             
             <!-- TO DO List -->
             <div class="card">

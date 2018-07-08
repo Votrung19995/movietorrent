@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Textarea;
 use Sunra\PhpSimple\HtmlDomParser;
 use Redirect;
 use Session;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -57,7 +58,30 @@ class AdminController extends Controller
 
         //set sesion laravel:
         session(['inventory'=>$inventory]);
+        $files = [];
+        //check AJAX file upload:
+        if ($request->ajax()) {
+            if ($request->hasFile('file')) {
+                //save file:
+                foreach ($request->file('file') as $fileKey => $fileObject ) {
+                    // make sure each file is valid
+                    if ($fileObject->isValid()) {
+                        $destinationFileName = $fileObject->getClientOriginalName();
+                        error_log("FILE NAME UPLOAD:::: ".$destinationFileName);
+                        array_push($files, $destinationFileName);
+                        Storage::disk('uploads')->put($destinationFileName, 'Contents');
+                    }
+                }
 
+                //save session:
+                session(['files' => $files]);
+                
+                foreach($files as $file){
+                    error_log('FILES:============>>>>>>??????? '.$file);
+                }                
+            }
+        }
+        
         if(empty($dom->find('img'))){
             error_log("EMPTY=========>>>".$err."IVEN PATH: ".$inventory->fullpath);
             error_log('CATE: '. $inventory->categoryid);
@@ -77,30 +101,48 @@ class AdminController extends Controller
             return Redirect::to('/admin/home');
         }
         else{
-            //SAVE:
-            $imagePath = $dom->find('img')[0]->src;
-            $path = $this->splitImg($imagePath);
-            error_log("PATHHHHHHHH++++++++".$path);
-            $texts = $this->splitText($fullpath);
-            $ct = '';
-            foreach($texts as $text){
-                $ct = $ct.$text;
-            }
-            //set value:
-            $inventory->image = $path;
-            $inventory->content = $ct;
+            $fs = session('files');
+            if (!empty($fs) && count($fs) > 0) {
+                error_log('=======> VAO HAM  COUNT ======>>'.count($fs));
+                //SAVE:
+                $imagePath = $dom->find('img')[0]->src;
+                $path = $this->splitImg($imagePath);
+                error_log("PATHHHHHHHH++++++++".$path);
+                $texts = $this->splitText($fullpath);
+                $ct = '';
+                foreach($texts as $text){
+                    $ct = $ct.$text;
+                }
+                //set value:
+                $inventory->image = $path;
+                $inventory->content = $ct;
+                $fileNames = '';
 
-            if($inventory->save()){
-               //set session for err:
-               session(['err'=>'Đã đăng tin, thông tin đã được cập nhật trong danh sách']);
-               session()->forget('categoryName');
-               session()->forget('inventory');
-               session()->forget('globalName');
+                foreach($fs as $fname){
+                    $fileNames = $fileNames.','.$fname;
+                }
+
+                $inventory->file = $fileNames;
+
+                if($inventory->save()){
+                    //set session for err:
+                    session(['err'=>'Đã đăng tin, thông tin đã được cập nhật trong danh sách']);
+                    session()->forget('categoryName');
+                    session()->forget('inventory');
+                    session()->forget('globalName');
+                    session()->forget('files');
+                }
+                else{
+                    //set session for err:
+                    session(['err'=>'Lỗi đăng tin']);
+                }
             }
             else{
-               //set session for err:
-               session(['err'=>'Lỗi đăng tin']);
+                error_log('=======> VAO HAM  LOI ======>>'.count($fs));
+                 //set session for err:
+                session(['err'=>'Vui lòng upload file']);
             }
+            
             return Redirect::to('/admin/home');
         }
     }

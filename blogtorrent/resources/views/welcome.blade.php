@@ -23,11 +23,11 @@
 	<!-- Magnific Popup -->
     <link type="text/css" rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
 
-	<!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+	
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
+	<link type="text/css" rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />
 
 	<!-- jQuery Plugins -->
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
@@ -65,7 +65,7 @@
 															</div>
 														    <div class="bxitem-newmovie"></div> 
 															<!-- image -->  
-															<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2017/01/19/star-wars-rogue-one.jpg?v=01' />  
+															<img src='' />  
 															<!-- description div -->  
 															<div class='description'>  
 																<!-- description content -->  
@@ -90,7 +90,7 @@
 																</div>
 																<div class="bxitem-newmovie"></div> 
 																<!-- image -->  
-																<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/04/03/pacific-rim-2.jpg?v=01' />  
+																<img src='' />  
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
@@ -115,7 +115,7 @@
 																</div>
 																<div class="bxitem-newmovie"></div> 
 																<!-- image -->  
-																<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/09/ready-player-one.jpg?v=01' />  
+																<img src='http://www.phimmoi.net/phim/sieu-thu-cuong-no-6374/' />  
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
@@ -140,7 +140,7 @@
 																</div>
 																<div class="bxitem-newmovie"></div> 
 																<!-- image -->  
-																<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2017/10/10/star-wars-the-last-jedi-2017.jpg?v=01' />  
+																<img src='' />  
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
@@ -165,7 +165,7 @@
 																</div>
 																<div class="bxitem-newmovie"></div> 
 																<!-- image -->  
-																<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2017/12/13/captain-tsubasa.jpg?v=01' />  
+																<img src='' />  
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
@@ -191,7 +191,7 @@
 																</div>
 																<div class="bxitem-newmovie"></div> 
 																<!-- image -->  
-																<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/26/hoang-phi-hong-nam-bac-anh-hung.jpg?v=01' />  
+																<img src='http://www.phimmoi.net/phim/sieu-thu-cuong-no-6374/' />  
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
@@ -252,7 +252,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/26/hoang-phi-hong-nam-bac-anh-hung.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='http://image.phimmoi.net/film/6374/poster.medium.jpg' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -278,7 +278,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/26/hoang-phi-hong-nam-bac-anh-hung.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -304,7 +304,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/24/fahrenheit-451-hdo-poster.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -330,7 +330,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/05/24/kill-me-please.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -356,7 +356,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2016/03/23/deadpool.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -382,7 +382,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://static.hdonline.vn/i/resources/new/film/215x311/2018/03/23/sieu-dai-chien.jpg?v=01' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
