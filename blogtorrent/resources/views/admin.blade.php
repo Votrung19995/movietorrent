@@ -33,12 +33,28 @@
   <script src="{{ asset('js/ckfinder/ckfinder.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
+    <div class="container-fluid">
+      @if (!empty($err))
+        <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 11%; right: 12px; z-index: 3;display: none"
+                <strong style="color: red">Lỗi: {{$err}} </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+      @endif
+    </div>
+
+    <script>
+        //fade out:
+        $('#err').fadeIn();
+        setTimeout(function(){
+            $('#err').fadeOut();
+        }, 4000);
+    </script>
 <div class="wrapper">
     <!-- /.content-header -->
     @include('slidebar')
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
@@ -60,28 +76,29 @@
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
-                <form>
+                <form method="POST" action="{{action('AdminController@post')}}" accept-charset="UTF-8">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="english">Tiêu đề tiếng anh</label>
-                      <input type="text" name="english" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                      <input type="text" value="{{$inventory->english}}" name="english" class="form-control" placeholder="Vui lòng nhập vào (*)">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="vietnamese">Tiêu đề tiếng việt</label>
-                      <input type="text" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                      <input type="text" value="{{$inventory->vietnamese}}" name="vietnamese" class="form-control" placeholder="Vui lòng nhập vào (*)">
                     </div>
                     <div class="form-group col-md-12"> 
                       <label>Nội dung và hình ảnh</label>
-                      <textarea class="form-control" name="content" rows="4"></textarea>
+                      <textarea class="form-control" name="content"  id="content" rows="4">{{$inventory->fullpath}}</textarea>
                       <small class="form-text text-muted">Bắt buộc thêm vào ảnh đại diện cho bài viết</small>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="english">Điểm IDMB</label>
-                        <input type="text" name="idmb" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                        <input type="text" value="{{$inventory->idmb}}" name="idmb" class="form-control" placeholder="Vui lòng nhập vào (*)">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Năm sản xuất và phát hành</label>
-                        <input type="text" name="year" class="form-control" placeholder="Vui lòng nhập vào (*)">
+                        <input type="text" value="{{$inventory->year}}" name="year" class="form-control" placeholder="Vui lòng nhập vào (*)">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="english">Chất lượng phim</label>
@@ -93,7 +110,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Quốc gia</label>
-                        <select name="globalid" class="form-control">
+                        <select name="global" class="form-control">
                             @foreach($globals as $global)
                               <option value="{{$global->globalid}}">{{$global->name}}</option>
                             @endforeach
@@ -101,11 +118,11 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Đánh giá phim</label>
-                        <input type="text" name="feedback" class="form-control" placeholder="Vui lòng nhập vào">
+                        <input type="text" value="{{$inventory->feedback}}" name="feedback" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Thể loại phim</label>
-                        <select name="categoryid" class="form-control">
+                        <select name="category" class="form-control">
                             @foreach($categorys as $category)
                               <option value="{{$category->categoryid}}">{{$category->name}}</option>
                             @endforeach
@@ -113,7 +130,7 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label>Đạo diễn sản xuất</label>
-                        <input type="text" name="director" class="form-control" placeholder="Vui lòng nhập vào">
+                        <input type="text" value="{{$inventory->director}}" name="director" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
                     <div class="form-group col-md-12"> 
                         <label for="english">Upload files</label>

@@ -102,9 +102,19 @@
 		@include('navbar')
 		<!-- /Nav -->
         <div class="container">
+                @php
+                     use App\Customer;
+
+                     $user = new Customer;
+                     if(!empty(session('variableUser'))){
+                        $user = session('variableUser');
+                     }
+                     $error = session('err');
+                @endphp
+
                 @if (!empty($error))
                     <div id="err" class="alert alert-warning alert-dismissible ms-warning" role="alert" style="position: absolute;top: 12%; right: 10px; z-index: 3;display: none"
-                        <strong style="color: red">Lỗi: </strong> {{$error}} 
+                        <strong style="color: red"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Lỗi: </strong> {{$error}} 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
@@ -114,6 +124,9 @@
                         $('#err').fadeIn();
                         setTimeout(function(){ 
                             $('#err').fadeOut();
+                            @php
+                              session()->forget('err');    
+                            @endphp
                         }, 4000);
                     </script>
                 @endif

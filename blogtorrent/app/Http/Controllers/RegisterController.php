@@ -38,11 +38,19 @@ class RegisterController extends Controller
         $user->phone = $phone;
         $user->email = $email;
         $user->address = $address;
-
+        
+        //set session for user:
+        session(['variableUser'=>$user]);
         //check User exist:
         if(UserService::checkUserIsExist($username)){
+            //set error session:
             $user->password = '';
-            return view('register')->with(array('error' => $username.' đã tồn tại, vui lòng nhập tên khác!','user' => $user));
+            //set session for user:
+            session(['variableUser'=>$user]);
+            //set session for err:
+            $err = $username.' đã tồn tại, vui lòng nhập tên khác!';
+            session(['err'=>$err]);
+            return Redirect::to('/register');
         }
         else{
             //saving value
@@ -54,7 +62,12 @@ class RegisterController extends Controller
 
                 if(empty($userSaved)){
                     $user->password = '';
-                    return view('register')->with(array('error' => 'Lỗi đăng ký!','user' => $user));
+                    //set session for user:
+                    session(['variableUser'=>$user]);
+                    //set session for err:
+                    $err = $username.' Lỗi đăng ký!!';
+                    session(['err'=>$err]);
+                    return Redirect::to('/register');
                 }
                 else{
                      //set role:
@@ -62,13 +75,21 @@ class RegisterController extends Controller
                     $role->user_id = $userSaved->user_id;
                     $role->name = 'guest';
                     $role->save();
+                    //delete seesiion:
+                    session()->forget('variableUser');
+                    session()->forget('err');
                 }
                 //set cookie:
                 return Redirect::to('/redirect/success')->withCookie(Cookie::make('isRegister','true',1));
             }
             else{
                 $user->password = '';
-                return view('register')->with(array('error' => 'Lỗi đăng ký!','user' => $user));
+                //set session for user:
+                session(['variableUser'=>$user]);
+                //set session for err:
+                $err = $username.' Lỗi đăng ký!!';
+                session(['err'=>$err]);
+                return view('register');
             }
         }
 

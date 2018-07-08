@@ -35,9 +35,15 @@ class LoginController extends Controller
                  $user = new Customer;
                  $user->username = $username;
                  $user->password = $password;
-                 return view('login')->with(array('error' => '401 không có quyền truy cập !', 'user'=>$user));
+                 //forget session for user:
+                 $err = '401 không có quyền truy cập';
+                 //set session for user:
+                 session(['err'=>$err]);
+                 return view('login');
               }
               else{
+                  //forget session for user:
+                  session()->forget('err');
                   if($role->name == 'admin'){
                       error_log('=====>> IS ADMIN::: '.$role->name);
                       //set cookie:
@@ -54,7 +60,10 @@ class LoginController extends Controller
               $user = new Customer;
               $user->username = $username;
               $user->password = $password;
-              return view('login')->with(array('error' => 'Tên đăng nhập hoặc mật khẩu không đúng !', 'user'=>$user));
+              $err = 'Tên đăng nhập hoặc mật khẩu không đúng !';
+              //set session for user:
+              session(['err'=>$err]);
+              return Redirect::to('login');
            }
         }
         else{
@@ -62,8 +71,10 @@ class LoginController extends Controller
               $user = new Customer;
               $user->username = $username;
               $user->password = $password;
-              
-              return view('login')->with(array('error' => 'Tên đăng nhập hoặc mật khẩu không đúng !', 'user'=>$user));
+              $err = 'Tên đăng nhập hoặc mật khẩu không đúng !';
+              //set session for user:
+              session(['err'=>$err]);
+              return Redirect::to('login');
         }
         
     }
