@@ -69,16 +69,24 @@ class AdminController extends Controller
                         $destinationFileName = $fileObject->getClientOriginalName();
                         error_log("FILE NAME UPLOAD:::: ".$destinationFileName);
                         array_push($files, $destinationFileName);
+                        
+                        if(!empty(session('files'))){
+                            //add more files:
+                            $sFiles = session('files');
+                            foreach($sFiles as $file){
+                                array_push($files, $file);
+                            }
+                        }
                         Storage::disk('uploads')->put($destinationFileName, 'Contents');
                     }
                 }
-
                 //save session:
                 session(['files' => $files]);
                 
                 foreach($files as $file){
                     error_log('FILES:============>>>>>>??????? '.$file);
-                }                
+                }
+                               
             }
         }
         
