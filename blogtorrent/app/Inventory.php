@@ -18,7 +18,7 @@ class Inventory extends Model
      * @var array
      */
     protected $fillable = [
-        'inventoryid', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','resolution', 'feedback','categoryid', 'globalid', 'created'
+        'inventoryid', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','resolution', 'feedback','categoryid', 'globalid', 'file_720','file_1080', 'isadd', 'trailer', 'created'
     ];
    
     public $timestamps = false;

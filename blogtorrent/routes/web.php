@@ -54,5 +54,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'],function () {
     Route::get('/home', 'AdminController@goAdmin');
     //go admin page:
     Route::post('/post', 'AdminController@post');
+    //go delete file:
+    Route::post('/deleteFile', 'AdminController@deleteFile');
 });
 

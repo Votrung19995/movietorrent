@@ -184,16 +184,43 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label>Đạo diễn sản xuất</label>
                         <input type="text" value="{{$inventory->director}}" name="director" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
+                    <div class="form-group col-md-6">
+                      <label>Thêm mới</label>
+                        <select name="isadd" class="form-control">
+                          @if($inventory->isadd == 'Phim mới')
+                              <option selected = "selected">Phim mới</option>
+                          @else
+                              <option>Phim mới</option>
+                          @endif
+
+                          @if($inventory->isadd == 'Phim cập nhật')
+                              <option selected = "selected">Phim cập nhật</option>
+                          @else
+                              <option>Phim cập nhật</option>
+                          @endif
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label>Link trailer</label>
+                      <input type="text" value="{{$inventory->trailer}}" name="trailer" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
                     <div class="form-group col-md-12"> 
-                        <label for="english">Upload files</label>
+                        <label for="english">Upload files (max 2 file)</label>
                         <div class="dropzone" id="my-dropzone" name="myDropzone"></div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i> Post bài</button>
+                  <button type="submit" class="btn btn-primary" title="Đăng bài"><i class="fa fa-reply" aria-hidden="true"></i> Post bài</button>
+                  <button type="button" onclick="clearCache()" style="margin-left: 15px; color: white" title="Xóa cache" class="btn btn-success"> <i class="fa fa-trash-o" aria-hidden="true"></i> Xóa cache</button>
+                  
+                  <script>
+                    function clearCache(){
+                      window.location.href = "#";
+                    }
+                  </script>
                 </form>
               </div><!-- /.card-body -->
             </div>
@@ -209,17 +236,17 @@
                   autoProcessQueue: true,
                   uploadMultiple: true,
                   parallelUploads: 5,
-                  maxFiles: 1000,
-                  maxFilesize: 5,
+                  maxFiles: 2,
+                  maxFilesize: 2,
                   acceptedFiles: ".torrent",
                   dictFileTooBig: 'Image is bigger than 5MB',
                   addRemoveLinks: true,
                   removedfile: function(file) {
                   var name = file.name;    
-                  name =name.replace(/\s+/g, '-').toLowerCase();    /*only spaces*/
+                  name =name.replace(/\s+/g, '-');    /*only spaces*/
                   $.ajax({
                        type: 'POST',
-                       url: '{{ url('admincp/deleteImg') }}',
+                       url: '{{action('AdminController@deleteFile')}}',
                        headers: {
                             'X-CSRF-TOKEN': '{!! csrf_token() !!}'
                         },

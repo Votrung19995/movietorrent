@@ -11,6 +11,7 @@ use Sunra\PhpSimple\HtmlDomParser;
 use Redirect;
 use Session;
 use Storage;
+use File;
 
 class AdminController extends Controller
 {
@@ -38,6 +39,8 @@ class AdminController extends Controller
         $feedback = $request->input('feedback');
         $category = $request->input('category');
         $director = $request->input('director');
+        $isadd = $request->input('isadd');
+        $trailer = $request->input('trailer');
         error_log("POST: =>".$fullpath);
         if(empty($fullpath)){
             $fullpath = "<p></p>";
@@ -55,13 +58,15 @@ class AdminController extends Controller
         $inventory->feedback = $feedback;
         $inventory->director = $director;
         $inventory->categoryid = $category;
+        $inventory->isadd = $isadd;
+        $inventory->trailer = $trailer;
 
         //set sesion laravel:
         session(['inventory'=>$inventory]);
-        $files = [];
         //check AJAX file upload:
         if ($request->ajax()) {
             if ($request->hasFile('file')) {
+                $files = [];
                 //save file:
                 foreach ($request->file('file') as $fileKey => $fileObject ) {
                     // make sure each file is valid
@@ -82,8 +87,8 @@ class AdminController extends Controller
                 }
                 //save session:
                 session(['files' => $files]);
-                
-                foreach($files as $file){
+
+                foreach(session('files') as $file){
                     error_log('FILES:============>>>>>>??????? '.$file);
                 }
                                
@@ -110,7 +115,7 @@ class AdminController extends Controller
         }
         else{
             $fs = session('files');
-            if (!empty($fs) && count($fs) > 0) {
+            if (!empty($fs) && count($fs) == 2) {
                 error_log('=======> VAO HAM  COUNT ======>>'.count($fs));
                 //SAVE:
                 $imagePath = $dom->find('img')[0]->src;
@@ -124,13 +129,19 @@ class AdminController extends Controller
                 //set value:
                 $inventory->image = $path;
                 $inventory->content = $ct;
-                $fileNames = '';
-
+                $file720 = '';
+                $file1080 = '';
+                //check file:
                 foreach($fs as $fname){
-                    $fileNames = $fileNames.','.$fname;
+                  if($this->checkFile($fname)){
+                      $file720 = $fname;
+                  }
+                  else{
+                      $file1080 = $fname;
+                  }
                 }
-
-                $inventory->file = $fileNames;
+                $inventory->file_720 = $file720;
+                $inventory->file_1080 = $file1080;
 
                 if($inventory->save()){
                     //set session for err:
@@ -148,10 +159,52 @@ class AdminController extends Controller
             else{
                 error_log('=======> VAO HAM  LOI ======>>'.count($fs));
                  //set session for err:
-                session(['err'=>'Vui lòng upload file']);
+                session(['err'=>'Vui lòng upload ít nhất 2 file']);
             }
             
             return Redirect::to('/admin/home');
+        }
+    }
+
+    //check file 720 or 1080:
+    public function checkFile($file){
+        if (strpos($file, '[720p]')) {
+            return true;
+        }
+        return false;
+    }
+
+    //delete file:
+    //post:
+    public function deleteFile(Request $request){
+        //check AJAX file upload:
+        if ($request->ajax()) {
+            $filename = $request->id;
+            //delete the image form the server
+            $path = public_path("/resources/files/$filename");
+            File::delete($path);
+            
+            //remove sessione file:
+            if(!empty(session('files'))){
+               $array = [];
+               foreach(session('files') as $file){
+                   if(strcmp($filename,$file) != 0){
+                       array_push($array,$file);
+                   }
+                   session(['files'=>$array]);
+               }
+            }
+            //remove sessione file:
+            if(!empty(session('files'))){
+                foreach(session('files') as $fi){
+                    error_log("=======>>> FILE DELETED From array:::: ".$fi);
+                }
+            }
+            else{
+                error_log("EMPTY");
+            }
+
+            error_log("=======>>> FILE DELETED:::: ".$filename);
         }
     }
 
