@@ -41,6 +41,8 @@ class AdminController extends Controller
         $director = $request->input('director');
         $isadd = $request->input('isadd');
         $trailer = $request->input('trailer');
+        $link = $request->input('link');
+        $stream = $request->input('stream');
         error_log("POST: =>".$fullpath);
         if(empty($fullpath)){
             $fullpath = "<p></p>";
@@ -60,7 +62,8 @@ class AdminController extends Controller
         $inventory->categoryid = $category;
         $inventory->isadd = $isadd;
         $inventory->trailer = $trailer;
-
+        $inventory->link = $link;
+        $inventory->stream = $stream;
         //set sesion laravel:
         session(['inventory'=>$inventory]);
         //check AJAX file upload:
@@ -115,7 +118,7 @@ class AdminController extends Controller
         }
         else{
             $fs = session('files');
-            if (!empty($fs) && count($fs) == 2) {
+            if ((!empty($fs) && count($fs) == 2) || (empty($fs))) {
                 error_log('=======> VAO HAM  COUNT ======>>'.count($fs));
                 //SAVE:
                 $imagePath = $dom->find('img')[0]->src;
@@ -131,13 +134,16 @@ class AdminController extends Controller
                 $inventory->content = $ct;
                 $file720 = '';
                 $file1080 = '';
-                //check file:
-                foreach($fs as $fname){
-                  if($this->checkFile($fname)){
-                      $file720 = $fname;
-                  }
-                  else{
-                      $file1080 = $fname;
+
+                if(!empty($fs)){
+                  //check file:
+                  foreach($fs as $fname){
+                    if($this->checkFile($fname)){
+                        $file720 = $fname;
+                    }
+                    else{
+                        $file1080 = $fname;
+                    }
                   }
                 }
                 $inventory->file_720 = $file720;

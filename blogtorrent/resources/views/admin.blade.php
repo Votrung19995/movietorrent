@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Điểm IDMB</label>
-                        <input type="text" value="{{$inventory->idmb}}" name="score" class="form-control" placeholder="Vui lòng nhập vào (*)" required>
+                        <input type="text" value="{{$inventory->idmb}}" name="score" class="form-control" placeholder="Vui lòng nhập vào (*)">
                     </div>
                     <div class="form-group col-md-6">
                         <label>Năm sản xuất và phát hành</label>
@@ -207,6 +207,14 @@
                     <div class="form-group col-md-12">
                       <label>Link trailer</label>
                       <input type="text" value="{{$inventory->trailer}}" name="trailer" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label>Link manet torent</label>
+                      <input type="text" value="{{$inventory->link}}" name="link" class="form-control" placeholder="Vui lòng nhập vào">
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label>Link stream online</label>
+                      <input type="text" value="{{$inventory->stream}}" name="stream" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
                     <div class="form-group col-md-12"> 
                         <label for="english">Upload files (max 2 file)</label>

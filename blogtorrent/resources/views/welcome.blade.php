@@ -52,157 +52,33 @@
                 <div class="row">
                         <div class="col-md-9">
                                 <div class="owl-carousel owl-theme">
-                                        <div class="item">
-											<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-													<!-- wrapper div -->  
-													<div class='wrapper'>
-														    <div class="overlay"></div>
-															<div class="work-content">
-																<div class="work-link">
-																	<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																	<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
+										@foreach($newmovies as $new)
+											<div class="item">
+												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
+														<!-- wrapper div -->  
+														<div class='wrapper'>
+																<div class="overlay"></div>
+																<div class="work-content">
+																	<div class="work-link">
+																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
+																		<a class="lightbox" href="{{asset('resources/images/'. $new->image)}}"><i class="fa fa-search"></i></a>
+																	</div>
 																</div>
-															</div>
-														    <div class="bxitem-newmovie"></div> 
-															<!-- image -->  
-															<img src='' />  
-															<!-- description div -->  
-															<div class='description'>  
-																<!-- description content -->  
-																<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																<!-- end description content -->  
-															</div>  
-															<!-- end description div -->  
-													</div>  
-													<!-- end wrapper div --> 
-											</div>
+																<div class="bxitem-newmovie"></div> 
+																<!-- image -->  
+																<img src='{{asset('resources/images/'. $new->image)}}' style="width: 100%;height: 300px" />  
+																<!-- description div -->  
+																<div class='description'>  
+																	<!-- description content -->  
+																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
+																	<!-- end description content -->  
+																</div>  
+																<!-- end description div -->  
+														</div>  
+														<!-- end wrapper div --> 
+												</div>
                                         </div>
-                                        <div class="item">
-												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-														<!-- wrapper div -->  
-														<div class='wrapper'>
-																<div class="overlay"></div>
-																<div class="work-content">
-																	<div class="work-link">
-																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-																	</div>
-																</div>
-																<div class="bxitem-newmovie"></div> 
-																<!-- image -->  
-																<img src='' />  
-																<!-- description div -->  
-																<div class='description'>  
-																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																	<!-- end description content -->  
-																</div>  
-																<!-- end description div -->  
-														</div>  
-														<!-- end wrapper div --> 
-												</div>
-										</div>
-                                        <div class="item">
-												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-														<!-- wrapper div -->  
-														<div class='wrapper'>
-																<div class="overlay"></div>
-																<div class="work-content">
-																	<div class="work-link">
-																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-																	</div>
-																</div>
-																<div class="bxitem-newmovie"></div> 
-																<!-- image -->  
-																<img src='http://www.phimmoi.net/phim/sieu-thu-cuong-no-6374/' />  
-																<!-- description div -->  
-																<div class='description'>  
-																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																	<!-- end description content -->  
-																</div>  
-																<!-- end description div -->  
-														</div>  
-														<!-- end wrapper div --> 
-												</div>
-										</div>
-                                        <div class="item">
-												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-														<!-- wrapper div -->  
-														<div class='wrapper'>
-																<div class="overlay"></div>
-																<div class="work-content">
-																	<div class="work-link">
-																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-																	</div>
-																</div>
-																<div class="bxitem-newmovie"></div> 
-																<!-- image -->  
-																<img src='' />  
-																<!-- description div -->  
-																<div class='description'>  
-																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																	<!-- end description content -->  
-																</div>  
-																<!-- end description div -->  
-														</div>  
-														<!-- end wrapper div --> 
-												</div>
-										</div>
-										<div class="item">
-												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-														<!-- wrapper div -->  
-														<div class='wrapper'>
-																<div class="overlay"></div>
-																<div class="work-content">
-																	<div class="work-link">
-																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-																	</div>
-																</div>
-																<div class="bxitem-newmovie"></div> 
-																<!-- image -->  
-																<img src='' />  
-																<!-- description div -->  
-																<div class='description'>  
-																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																	<!-- end description content -->  
-																</div>  
-																<!-- end description div -->  
-														</div>  
-														<!-- end wrapper div --> 
-												</div>
-										</div>
-
-										<div class="item">
-												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-														<!-- wrapper div -->  
-														<div class='wrapper'>
-																<div class="overlay"></div>
-																<div class="work-content">
-																	<div class="work-link">
-																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-																	</div>
-																</div>
-																<div class="bxitem-newmovie"></div> 
-																<!-- image -->  
-																<img src='http://www.phimmoi.net/phim/sieu-thu-cuong-no-6374/' />  
-																<!-- description div -->  
-																<div class='description'>  
-																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-																	<!-- end description content -->  
-																</div>  
-																<!-- end description div -->  
-														</div>  
-														<!-- end wrapper div --> 
-												</div>
-										</div>
+										@endforeach
                                 </div>
 						</div>
 						<div class ="col-md-3">
@@ -215,13 +91,13 @@
                                 nav:true,
                                 responsive:{
                                     0:{
-                                        items:1
+                                        items:2
                                     },
                                     600:{
-                                        items:3
+                                        items:4
                                     },
                                     1000:{
-                                        items:5
+                                        items:4
                                     }
                                 },
 								autoplay:true,
@@ -239,7 +115,47 @@
 					</div>
 				</div>
 				<div class="row">
-						<div class="col-md-2">
+					@foreach($newupdates as $new)
+					<div class="col-sm-3half col-sm-4half">
+							<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
+									<!-- wrapper div -->  
+									<div class='wrapper'>
+											<div class="overlay" style="width: 100%"></div>
+											<div class="work-content">
+												<div class="work-link">
+													<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+													<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
+												</div>
+											</div>
+											<div class="bxitem-newmovie"></div> 
+											<!-- image -->  
+											<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
+											<!-- description div -->  
+											<div class='description'>  
+												<!-- description content -->  
+												<div class='description_content'>The pack, the basic unit of wolf social life </div>  
+												<!-- end description content -->  
+											</div>  
+											<!-- end description div -->  
+									</div>  
+									<!-- end wrapper div --> 
+							</div>
+					</div>
+					
+					@endforeach
+				</div>
+				<br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 id="trailer" class="text-mutex" style="display: none">Trailer mới cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+					</div>
+					<div class="col-md-8">
+							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="row">
+						@foreach($trailers as $new)
+						<div class="col-sm-3half col-sm-4half">
 								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 										<!-- wrapper div -->  
 										<div class='wrapper'>
@@ -252,7 +168,7 @@
 												</div>
 												<div class="bxitem-newmovie"></div> 
 												<!-- image -->  
-												<img src='http://image.phimmoi.net/film/6374/poster.medium.jpg' class="img-responsive" style="width: 100%;height: 100%" />  
+												<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
@@ -264,139 +180,9 @@
 										<!-- end wrapper div --> 
 								</div>
 						</div>
-
-						<div class="col-md-2">
-								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-										<!-- wrapper div -->  
-										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
-												<div class="work-content">
-													<div class="work-link">
-														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="bxitem-newmovie"></div> 
-												<!-- image -->  
-												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
-												<!-- description div -->  
-												<div class='description'>  
-													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-													<!-- end description content -->  
-												</div>  
-												<!-- end description div -->  
-										</div>  
-										<!-- end wrapper div --> 
-								</div>
-						</div>
-
-						<div class="col-md-2">
-								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-										<!-- wrapper div -->  
-										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
-												<div class="work-content">
-													<div class="work-link">
-														<a href="#"><i class="fa fa-download" aria-hidden="true"></i>></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="bxitem-newmovie"></div> 
-												<!-- image -->  
-												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
-												<!-- description div -->  
-												<div class='description'>  
-													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-													<!-- end description content -->  
-												</div>  
-												<!-- end description div -->  
-										</div>  
-										<!-- end wrapper div --> 
-								</div>
-						</div>
-
-						<div class="col-md-2">
-								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-										<!-- wrapper div -->  
-										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
-												<div class="work-content">
-													<div class="work-link">
-														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="bxitem-newmovie"></div> 
-												<!-- image -->  
-												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
-												<!-- description div -->  
-												<div class='description'>  
-													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-													<!-- end description content -->  
-												</div>  
-												<!-- end description div -->  
-										</div>  
-										<!-- end wrapper div --> 
-								</div>
-						</div>
-
-						<div class="col-md-2">
-								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-										<!-- wrapper div -->  
-										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
-												<div class="work-content">
-													<div class="work-link">
-														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="bxitem-newmovie"></div> 
-												<!-- image -->  
-												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
-												<!-- description div -->  
-												<div class='description'>  
-													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-													<!-- end description content -->  
-												</div>  
-												<!-- end description div -->  
-										</div>  
-										<!-- end wrapper div --> 
-								</div>
-						</div>
-
-						<div class="col-md-2">
-								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
-										<!-- wrapper div -->  
-										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
-												<div class="work-content">
-													<div class="work-link">
-														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
-													</div>
-												</div>
-												<div class="bxitem-newmovie"></div> 
-												<!-- image -->  
-												<img src='' class="img-responsive" style="width: 100%;height: 100%" />  
-												<!-- description div -->  
-												<div class='description'>  
-													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
-													<!-- end description content -->  
-												</div>  
-												<!-- end description div -->  
-										</div>  
-										<!-- end wrapper div --> 
-								</div>
-						</div>
-
-												
-				</div>
+						
+						@endforeach
+					</div>
             </div>
 	
 	<!-- /Header -->
@@ -1197,6 +983,7 @@
 		$('#updatemovie').fadeIn(3000);
 		$('#newmovie').fadeIn(3000);
 		$('#searchbox').fadeIn(3000);
+		$('#trailer').fadeIn(3000);
 	</script>
 
 </body>
