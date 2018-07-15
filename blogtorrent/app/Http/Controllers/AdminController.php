@@ -118,7 +118,7 @@ class AdminController extends Controller
         }
         else{
             $fs = session('files');
-            if ((!empty($fs) && count($fs) == 2) || (empty($fs))) {
+            if ((!empty($fs) && count($fs) == 1) || (empty($fs))) {
                 error_log('=======> VAO HAM  COUNT ======>>'.count($fs));
                 //SAVE:
                 $imagePath = $dom->find('img')[0]->src;

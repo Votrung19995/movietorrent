@@ -70,7 +70,7 @@
 																<!-- description div -->  
 																<div class='description'>  
 																	<!-- description content -->  
-																	<div class='description_content'>The pack, the basic unit of wolf social life </div>  
+																	<div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
 																	<!-- end description content -->  
 																</div>  
 																<!-- end description div -->  
@@ -133,7 +133,7 @@
 											<!-- description div -->  
 											<div class='description'>  
 												<!-- description content -->  
-												<div class='description_content'>The pack, the basic unit of wolf social life </div>  
+											    <div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
 												<!-- end description content -->  
 											</div>  
 											<!-- end description div -->  
@@ -172,7 +172,7 @@
 												<!-- description div -->  
 												<div class='description'>  
 													<!-- description content -->  
-													<div class='description_content'>The pack, the basic unit of wolf social life </div>  
+													<div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
 													<!-- end description content -->  
 												</div>  
 												<!-- end description div -->  
