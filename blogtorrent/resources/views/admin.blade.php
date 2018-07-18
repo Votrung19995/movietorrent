@@ -185,25 +185,42 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label>Đạo diễn sản xuất</label>
+                      <label>Hãng sản xuất</label>
+                      <select name="production" class="form-control">
+                          @foreach($products as $product)
+                            @if(!empty(session('productName')))
+                                @if(session('productName')->name == $product->name) 
+                                  <option selected = "selected" value="{{$product->name}}">{{$product->name}}</option>
+                                @else
+                                  <option value="{{$product->name}}">{{$product->name}}</option>
+                                @endif
+                            @else
+                               <option value="{{$product->name}}">{{$product->name}}</option>
+                            @endif
+                          @endforeach
+                      </select>
+                   </div>
+                   <div class="form-group col-md-6">
+                    <label>Thêm mới</label>
+                      <select name="isadd" class="form-control">
+                        @if($inventory->isadd == 'Phim mới')
+                            <option selected = "selected">Phim mới</option>
+                        @else
+                            <option>Phim mới</option>
+                        @endif
+
+                        @if($inventory->isadd == 'Phim cập nhật')
+                            <option selected = "selected">Phim cập nhật</option>
+                        @else
+                            <option>Phim cập nhật</option>
+                        @endif
+                      </select>
+                  </div>
+                    <div class="form-group col-md-12">
+                        <label>Đạo diễn hoặc diễn viên</label>
                         <input type="text" value="{{$inventory->director}}" name="director" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
-                    <div class="form-group col-md-6">
-                      <label>Thêm mới</label>
-                        <select name="isadd" class="form-control">
-                          @if($inventory->isadd == 'Phim mới')
-                              <option selected = "selected">Phim mới</option>
-                          @else
-                              <option>Phim mới</option>
-                          @endif
-
-                          @if($inventory->isadd == 'Phim cập nhật')
-                              <option selected = "selected">Phim cập nhật</option>
-                          @else
-                              <option>Phim cập nhật</option>
-                          @endif
-                        </select>
-                    </div>
+    
                     <div class="form-group col-md-12">
                       <label>Link trailer</label>
                       <input type="text" value="{{$inventory->trailer}}" name="trailer" class="form-control" placeholder="Vui lòng nhập vào">

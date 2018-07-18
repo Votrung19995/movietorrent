@@ -12,6 +12,7 @@ use Redirect;
 use Session;
 use Storage;
 use File;
+use App\Product;
 
 class AdminController extends Controller
 {
@@ -19,9 +20,10 @@ class AdminController extends Controller
     public function goAdmin(){
         $err = "";
         $category = Category::all();
+        $products = Product::all();
         $global = Glo::all();
         $inventory = new Inventory;
-        return view('admin')->with(array('categorys'=>$category, 'globals'=>$global, 'inventory' =>  $inventory, 'error'=>$err));
+        return view('admin')->with(array('categorys'=>$category, 'globals'=>$global, 'inventory' =>$inventory, 'products' =>$products, 'error'=>$err));
     }
 
     //post:
@@ -43,6 +45,7 @@ class AdminController extends Controller
         $trailer = $request->input('trailer');
         $link = $request->input('link');
         $stream = $request->input('stream');
+        $production = $request->input('production');
         error_log("POST: =>".$fullpath);
         if(empty($fullpath)){
             $fullpath = "<p></p>";
@@ -64,6 +67,7 @@ class AdminController extends Controller
         $inventory->trailer = $trailer;
         $inventory->link = $link;
         $inventory->stream = $stream;
+        $inventory->production = $production;
         //set sesion laravel:
         session(['inventory'=>$inventory]);
         //check AJAX file upload:
@@ -112,13 +116,15 @@ class AdminController extends Controller
             $c = Category::where('categoryid', $inventory->categoryid)->first();
             //set session for user:
             session(['categoryName'=>$c]);
+            //set session for user:
+            session(['productName'=>$production]);
             //set session for err:
             session(['err'=>'Vui lòng chọn ảnh và thử lại.']);
             return Redirect::to('/admin/home');
         }
         else{
             $fs = session('files');
-            if ((!empty($fs) && count($fs) == 1) || (empty($fs))) {
+            if ((!empty($fs) && count($fs) == 1) || (empty($fs) || (!empty($fs) && count($fs) == 2))) {
                 error_log('=======> VAO HAM  COUNT ======>>'.count($fs));
                 //SAVE:
                 $imagePath = $dom->find('img')[0]->src;
@@ -155,6 +161,7 @@ class AdminController extends Controller
                     session()->forget('categoryName');
                     session()->forget('inventory');
                     session()->forget('globalName');
+                    session()->forget('productName');
                     session()->forget('files');
                 }
                 else{

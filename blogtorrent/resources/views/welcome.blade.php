@@ -61,7 +61,7 @@
 																<div class="work-content">
 																	<div class="work-link">
 																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="{{asset('resources/images/'. $new->image)}}"><i class="fa fa-search"></i></a>
+																		<a class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
 																<div class="bxitem-newmovie"></div> 
@@ -108,14 +108,14 @@
 				<br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 id="updatemovie" class="text-mutex" style="display: none">Phim chiếu rạp cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id="new" class="text-mutex" style="display: none">Phim chiếu rạp mới  <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
 					</div>
 					<div class="col-md-8">
 							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 					</div>
 				</div>
 				<div class="row">
-					@foreach($newupdates as $new)
+					@foreach($news as $new)
 					<div class="col-sm-3half col-sm-4half">
 							<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 									<!-- wrapper div -->  
@@ -124,7 +124,7 @@
 											<div class="work-content">
 												<div class="work-link">
 													<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-													<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
+													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 												</div>
 											</div>
 											<div class="bxitem-newmovie"></div> 
@@ -144,6 +144,47 @@
 					
 					@endforeach
 				</div>
+
+				<br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 id="updatemovie" class="text-mutex" style="display: none">Phim chiếu rạp cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+					</div>
+					<div class="col-md-8">
+							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+				<div class="row">
+					@foreach($newupdates as $new)
+					<div class="col-sm-3half col-sm-4half">
+							<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
+									<!-- wrapper div -->  
+									<div class='wrapper'>
+											<div class="overlay" style="width: 100%"></div>
+											<div class="work-content">
+												<div class="work-link">
+													<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
+													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+												</div>
+											</div>
+											<div class="bxitem-newmovie"></div> 
+											<!-- image -->  
+											<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
+											<!-- description div -->  
+											<div class='description'>  
+												<!-- description content -->  
+											    <div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
+												<!-- end description content -->  
+											</div>  
+											<!-- end description div -->  
+									</div>  
+									<!-- end wrapper div --> 
+							</div>
+					</div>
+					
+					@endforeach
+				</div>
+
 				<br>
                 <div class="row">
                     <div class="col-md-4">
@@ -163,7 +204,7 @@
 												<div class="work-content">
 													<div class="work-link">
 														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-														<a class="lightbox" href="./img/work1.jpg"><i class="fa fa-search"></i></a>
+														<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
 												<div class="bxitem-newmovie"></div> 
@@ -438,6 +479,7 @@
 		$('#newmovie').fadeIn(3000);
 		$('#searchbox').fadeIn(3000);
 		$('#trailer').fadeIn(3000);
+		$('#new').fadeIn(3000);
 	</script>
 
 </body>
