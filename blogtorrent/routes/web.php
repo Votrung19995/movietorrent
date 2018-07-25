@@ -23,6 +23,9 @@ Route::get('/register', 'RegisterController@goRegister');
 //go register:
 Route::get('/logOut', 'LoginController@logOut');
 
+//autocomplete:
+Route::get('searchajax',array('as'=>'searchajax','uses'=>'SearchController@autoComplete'));
+
 Route::prefix('auth')->group(function () {
     //accept Register:
     Route::post('/register', 'RegisterController@acceptRegister');

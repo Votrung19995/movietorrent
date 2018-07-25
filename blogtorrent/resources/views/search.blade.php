@@ -4,7 +4,7 @@
 				<div class="row">
 						<div class="col-md-4">
 								<form style="margin-top: 15px;">
-										<div class="input-group" style="margin-right: 0px;padding: 0px;border-radius: 20px; width: 100%">
+										<div id="search_text" name="search_text" class="input-group" style="margin-right: 0px;padding: 0px;border-radius: 20px; width: 100%">
 												<input type="text" class="form-control" style="background: transparent;border: 1px solid #AFB0B7;border-top-left-radius: 20px;border-bottom-left-radius: 20px " placeholder="Nhập từ khóa cần tìm">
 												<span class="input-group-btn" style="margin-right: 0px">
 												   <button class="btn btn-primary" title="Tìm kiếm" style="height: 40px;margin: 0px; border-top-right-radius: 22px;border-bottom-right-radius: 22px;opacity: 0.8" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -30,3 +30,29 @@
 		   </div>
     </div>
 </nav>
+
+{{-- Autocomplete --}}
+<script>
+		$(document).ready(function() {
+		  src = "{{ route('searchajax') }}";
+		  $("#search_text").autocomplete({
+			 source: function(request, response) {
+				 $.ajax({
+					 url: src,
+					 dataType: "json",
+					 data: {
+						 term : request.term
+					 },
+					 success: function(data) {
+						 response(data);
+					 }
+				 });
+			 },
+			 select: function(event, ui) {
+				 var idUI = ui.item.id;
+				 window.location.href = "/detail/"+idUI;
+			 },
+			 minLength: 3,
+		 });
+	 });
+</script>

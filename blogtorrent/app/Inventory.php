@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Inventory extends Model
 {
+    use Sluggable;
    /**
      * The table associated with the model.
      *
@@ -18,8 +20,22 @@ class Inventory extends Model
      * @var array
      */
     protected $fillable = [
-        'inventoryid', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','production','resolution', 'feedback','categoryid', 'globalid', 'file_720','file_1080', 'isadd', 'link', 'stream', 'trailer', 'created'
+        'inventoryid', 'id', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','production','resolution', 'feedback','categoryid', 'globalid', 'file_720','file_1080', 'isadd', 'link', 'stream','slug', 'trailer', 'created'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'vietnamese'
+            ]
+        ];
+    }
    
     public $timestamps = false;
 }

@@ -13,6 +13,7 @@ use Session;
 use Storage;
 use File;
 use App\Product;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AdminController extends Controller
 {
@@ -46,6 +47,7 @@ class AdminController extends Controller
         $link = $request->input('link');
         $stream = $request->input('stream');
         $production = $request->input('production');
+        $slug = SlugService::createSlug(Inventory::class, 'slug', $vietnamese);
         error_log("POST: =>".$fullpath);
         if(empty($fullpath)){
             $fullpath = "<p></p>";
@@ -68,6 +70,7 @@ class AdminController extends Controller
         $inventory->link = $link;
         $inventory->stream = $stream;
         $inventory->production = $production;
+        $inventory->slug = $slug;
         //set sesion laravel:
         session(['inventory'=>$inventory]);
         //check AJAX file upload:

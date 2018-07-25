@@ -21,13 +21,15 @@
     <link type="text/css" rel="stylesheet" href="{{asset('css/owl.theme.default.css')}}" />
 
 	<!-- Magnific Popup -->
-    <link type="text/css" rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
-
+	<link type="text/css" rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/jquery.ui.autocomplete.css')}}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{{asset('plugins/font-awesome/css/font-awesome.min.css')}}">
 	
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
-	<link type="text/css" rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all"/>
 
 	<!-- jQuery Plugins -->
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
@@ -35,6 +37,7 @@
     <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.magnific-popup.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -64,7 +67,15 @@
 																		<a class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
-																<div class="bxitem-newmovie"></div> 
+																@php
+																	$current_date = strtotime($currentDay->format('Y-m-d'));
+																	$created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+																	$datediff = abs($current_date - $created_date);
+																	$dateConvert = floor($datediff / (60*60*24));
+																@endphp
+																@if($dateConvert <= 14)
+																<div class="bxitem-newmovie"></div>
+																@endif
 																<!-- image -->  
 																<img src='{{asset('resources/images/'. $new->image)}}' style="width: 100%;height: 300px" />  
 																<!-- description div -->  
@@ -127,13 +138,21 @@
 													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 												</div>
 											</div>
-											<div class="bxitem-newmovie"></div> 
+											@php
+												  $current_date = strtotime($currentDay->format('Y-m-d'));
+												  $created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+												  $datediff = abs($current_date - $created_date);
+												  $dateConvert = floor($datediff / (60*60*24));
+											@endphp
+											@if($dateConvert <= 14)
+											   <div class="bxitem-newmovie"></div>
+											@endif
 											<!-- image -->  
 											<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
 											<!-- description div -->  
 											<div class='description'>  
 												<!-- description content -->  
-											    <div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
+												<div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div> 
 												<!-- end description content -->  
 											</div>  
 											<!-- end description div -->  
@@ -167,7 +186,15 @@
 													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 												</div>
 											</div>
-											<div class="bxitem-newmovie"></div> 
+											@php
+												$current_date = strtotime($currentDay->format('Y-m-d'));
+												$created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+												$datediff = abs($current_date - $created_date);
+												$dateConvert = floor($datediff / (60*60*24));
+											@endphp
+											@if($dateConvert <= 14)
+											    <div class="bxitem-newmovie"></div>
+											@endif
 											<!-- image -->  
 											<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
 											<!-- description div -->  
@@ -207,7 +234,15 @@
 														<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
-												<div class="bxitem-newmovie"></div> 
+												@php
+													$current_date = strtotime($currentDay->format('Y-m-d'));
+													$created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+													$datediff = abs($current_date - $created_date);
+													$dateConvert = floor($datediff / (60*60*24));
+												@endphp
+												@if($dateConvert <= 14)
+												    <div class="bxitem-newmovie"></div>
+												@endif 
 												<!-- image -->  
 												<img src='{{asset('resources/images/'. $new->image)}}' class="img-responsive" style="width: 100%;height: 300px" />  
 												<!-- description div -->  
@@ -474,12 +509,18 @@
 	{{-- //hiden h1: --}}
 
 	<script>
-		$('#imageqc').fadeIn(3000);
-		$('#updatemovie').fadeIn(3000);
-		$('#newmovie').fadeIn(3000);
-		$('#searchbox').fadeIn(3000);
-		$('#trailer').fadeIn(3000);
-		$('#new').fadeIn(3000);
+		$('#back-to-top').each(function(){
+			$(this).click(function(){ 
+				$('html,body').animate({ scrollTop: 0 }, 'slow');
+				return false; 
+			});
+        });
+		$('#imageqc').fadeIn(2500);
+		$('#updatemovie').fadeIn(2500);
+		$('#newmovie').fadeIn(2500);
+		$('#searchbox').fadeIn(2500);
+		$('#trailer').fadeIn(2500);
+		$('#new').fadeIn(2500);
 	</script>
 
 </body>

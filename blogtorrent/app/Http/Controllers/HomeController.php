@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Inventory;
+use DateTime;
 
 class HomeController extends Controller
 {
     //go index:
     public function index(){
+        //get current day:
+        $currentDay = new DateTime();
         //load categorys:
         $newmovies = Inventory::where('categoryid','!=',6)->orderByRaw('RAND()')->take(8)->orderBy('created', 'desc')->skip(0)->get();
         //load categorys:
@@ -17,6 +20,6 @@ class HomeController extends Controller
         $trailers = Inventory::where('categoryid','=',6)->take(5)->orderBy('created', 'desc')->skip(0)->get();
         //load categorys:
         $news = Inventory::where('isadd' ,'=', 'Phim mới')->where('categoryid','!=',6)->take(5)->orderBy('created', 'desc')->skip(0)->get();
-        return view ('welcome')->with(array('newmovies'=>$newmovies, 'newupdates'=>$newupdates, 'trailers'=>$trailers, 'news' =>$news));
+        return view ('welcome')->with(array('newmovies'=>$newmovies, 'newupdates'=>$newupdates, 'trailers'=>$trailers, 'news' =>$news, 'currentDay'=>$currentDay));
     }
 }
