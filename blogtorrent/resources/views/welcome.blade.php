@@ -60,11 +60,11 @@
 												<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 														<!-- wrapper div -->  
 														<div class='wrapper'>
-																<div class="overlay"></div>
+														        <div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
 																<div class="work-content">
 																	<div class="work-link">
 																		<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
-																		<a class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+																		<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 																	</div>
 																</div>
 																@php
@@ -131,11 +131,11 @@
 							<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 									<!-- wrapper div -->  
 									<div class='wrapper'>
-											<div class="overlay" style="width: 100%"></div>
+											<div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
 											<div class="work-content">
 												<div class="work-link">
 													<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+													<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 												</div>
 											</div>
 											@php
@@ -179,11 +179,11 @@
 							<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 									<!-- wrapper div -->  
 									<div class='wrapper'>
-											<div class="overlay" style="width: 100%"></div>
+											<div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
 											<div class="work-content">
 												<div class="work-link">
 													<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-													<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+													<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 												</div>
 											</div>
 											@php
@@ -227,11 +227,11 @@
 								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
 										<!-- wrapper div -->  
 										<div class='wrapper'>
-												<div class="overlay" style="width: 100%"></div>
+												<div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
 												<div class="work-content">
 													<div class="work-link">
 														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></a>
-														<a class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+														<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="./img/work1.jpg" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
 													</div>
 												</div>
 												@php

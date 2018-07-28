@@ -61,3 +61,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'],function () {
     Route::post('/deleteFile', 'AdminController@deleteFile');
 });
 
+//go to movie detail
+Route::prefix('movie')->group(function () {
+    //go admin page:
+    Route::get('/{slug}', 'MovieController@movieDetail');
+});
+
