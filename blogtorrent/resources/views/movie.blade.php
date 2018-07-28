@@ -55,9 +55,9 @@
 		<div class="row">
 				<nav aria-label="breadcrumb" style="margin-bottom: 0px">
 					<ol class="breadcrumb thumbnail">
-						<li class="breadcrumb-item"><a href="#" style="color: #5499C7">Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="#" style="color: #5499C7"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
 						<li class="breadcrumb-item"><a href="#" style="color: #5499C7">{{$category}}</a></li>
-						<li class="breadcrumb-item active" aria-current="page">{{$movie->vietnamese}}</li>
+						<li class="breadcrumb-item active" aria-current="page" style="">{{$movie->vietnamese}}</li>
 					</ol>
 				</nav>
 		</div>
@@ -83,7 +83,8 @@
 				</div>
 				<div class="col-sm-6">
                    <div style="margin-top: 15px;padding: 5px ! important;" class="thumbnail">
-						<h5 style="text-transform: uppercase; font: 21px 'UTMCafetaRegular';color: orangered ! important; font-weight: bold; color: #55778E"><a href="#" class="hov" style="color: #563d7c;opacity: 1">{{$movie->vietnamese}}</a></h5>
+						<h4>{{$movie->vietnamese}}</h4>
+						<small style="font-size: 15px;color: #12887B;font-weight: bold">{{$movie->english}}</small>
 				   </div>
 				</div>
 				<div class="col-sm-12">
@@ -96,10 +97,11 @@
 				<div class="col-sm-12">
 					    <br>
 						<h4>Nội dung phim</h4>
-						  @if(!empty($movie->content))
+						  @if(strlen($movie->content) > 10)
 						      <p style="font-weight: bold;color: black">{!!$movie->content!!}</p>
 						  @else
-                              Chưa có nội dung !
+							  <b> Chưa có nội dung phim !</b>
+							  <br>
 						  @endif
 						<br>
 				</div>
