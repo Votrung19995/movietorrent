@@ -55,7 +55,7 @@
 		<div class="row">
 				<nav aria-label="breadcrumb" style="margin-bottom: 0px">
 					<ol class="breadcrumb thumbnail">
-						<li class="breadcrumb-item"><a href="#" style="color: #5499C7"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #5499C7"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
 						<li class="breadcrumb-item"><a href="#" style="color: #5499C7">{{$category}}</a></li>
 						<li class="breadcrumb-item active" aria-current="page" style="">{{$movie->vietnamese}}</li>
 					</ol>
@@ -69,9 +69,9 @@
 					<img src="{{asset('resources/images/'.$movie->image)}}" style="width: 100%; height: 520px" class="img-fluid"/>
 					<div class='description'>  
 						<!-- description content -->  
-						<div class='description_content'>
+						<div class='description_content' style="align-items: center; text-align: center">
 							<div class="btn-group">
-								<button type="button" class="btn btn-success btn-lg" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> Tải về torent</button>
+								<button type="button" class="btn btn-success btn-lg" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-magnet" aria-hidden="true"></i> Magnet</button>
 								<button type="button" class="btn btn-primary btn-lg" style="border-radius: 0px"><i class="fa fa-file-video-o" aria-hidden="true"></i> Xem phim</button>
 							</div>
 						</div> 
@@ -84,8 +84,143 @@
 				<div class="col-sm-6">
                    <div style="margin-top: 15px;padding: 5px ! important;" class="thumbnail">
 						<h4>{{$movie->vietnamese}}</h4>
-						<small style="font-size: 15px;color: #12887B;font-weight: bold">{{$movie->english}}</small>
+						<small style="font-size: 15px;color: #0B7065;font-weight: bold">{{$movie->english}}</small>
+						<h5 style="margin-top: 15px">Điểm IMDb: 
+							 @if(!empty($movie->idmb))
+							 <span class="label label-primary" style="font-weight: bold"> {{$movie->idmb}}</span>
+							 @else
+							     <small style="font-size: 12px;font-weight: bold">chưa có</small>
+							 @endif
+						</h5>
+						<h5>Đạo diễn, diễn viên: 
+							@if(!empty($movie->director))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px; font-weight: bold; color: #5499C7">{{$movie->director}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Quốc gia: 
+							@if(!empty($global))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold">{{$global}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Năm sản xuất: 
+							@if(!empty($movie->year))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;">{{$movie->year}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Thời lượng phim: 
+							@if(!empty($movie->lenght))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;color: #5499C7">{{$movie->lenght}} phút</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Chất lượng phim: 
+							@if(!empty($movie->resolution))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;color: #5499C7">{{$movie->resolution}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Thể loại phim: 
+							@if(!empty($category))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;color: #5499C7">{{$category}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Hãng sản xuất: 
+							@if(!empty($movie->production))
+							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;color: #5499C7">{{$movie->production}}</small></a>
+							@else
+								<small style="font-size: 12px;font-weight: bold">chưa có</small>
+							@endif
+					   </h5>
+					   <h5>Tải về torrent: 
+							@if(!empty($movie->file_720)&&!empty($movie->file_1080) )
+								<div class="btn-group" style="margin-top: 10px">
+										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
+										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
+								</div>
+							@elseif(!empty($movie->file_720)&&empty($movie->file_1080))
+								<div class="btn-group" style="margin-top: 10px">
+										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
+								</div>
+							@elseif(empty($movie->file_720)&&!empty($movie->file_1080))
+							    <div class="btn-group" style="margin-top: 10px">
+										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
+								</div>
+							@else
+								<small style="font-size: 12px;font-weight: bold">Chưa cập nhật torrent</small>
+							@endif
+					   </h5>
 				   </div>
+				</div>
+				<div class="col-sm-12">
+						<h4>Phim liên quan</h4>
+						<div class="owl-carousel owl-theme">
+								@foreach($relates as $new)
+									<div class="item">
+										<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
+												<!-- wrapper div -->  
+												<div class='wrapper'>
+														<div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
+														<div class="work-content">
+															<div class="work-link">
+																<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
+																<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+															</div>
+														</div>
+														@php
+															$current_date = strtotime($currentDay->format('Y-m-d'));
+															$created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+															$datediff = abs($current_date - $created_date);
+															$dateConvert = floor($datediff / (60*60*24));
+														@endphp
+														@if($dateConvert <= 14)
+														<div class="bxitem-newmovie"></div>
+														@endif
+														<!-- image -->  
+														<img src='{{asset('resources/images/'. $new->image)}}' style="width: 100%;height: 275px" />  
+														<!-- description div -->  
+														<div class='description'>  
+															<!-- description content -->  
+															<div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
+															<!-- end description content -->  
+														</div>  
+														<!-- end description div -->  
+												</div>  
+												<!-- end wrapper div --> 
+										</div>
+								</div>
+								@endforeach
+						</div>
+						<br>
+						<script>
+								$('.owl-carousel').owlCarousel({
+									loop:true,
+									margin:5,
+									nav:true,
+									responsive:{
+										0:{
+											items:2
+										},
+										600:{
+											items:4
+										},
+										1000:{
+											items:4
+										}
+									},
+									autoplay:true,
+									autoplayTimeout:8000
+								 });
+						</script>
 				</div>
 				<div class="col-sm-12">
 						<h4>Trailer phim</h4>

@@ -13,6 +13,7 @@ use Session;
 use Storage;
 use File;
 use App\Product;
+use DB;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AdminController extends Controller
@@ -24,7 +25,9 @@ class AdminController extends Controller
         $products = Product::all();
         $global = Glo::all();
         $inventory = new Inventory;
-        return view('admin')->with(array('categorys'=>$category, 'globals'=>$global, 'inventory' =>$inventory, 'products' =>$products, 'error'=>$err));
+        $totals = DB::table('inventory')->get();
+        $list = DB::table('inventory')->orderBy('created', 'desc')->paginate(8);
+        return view('admin')->with(array('categorys'=>$category, 'globals'=>$global, 'inventory' =>$inventory, 'products' =>$products, 'error'=>$err, 'list'=>$list, 'totals'=>$totals));
     }
 
     //post:
@@ -46,8 +49,8 @@ class AdminController extends Controller
         $trailer = $request->input('trailer');
         $link = $request->input('link');
         $stream = $request->input('stream');
+        $lenght = $request->input('lenght');
         $production = $request->input('production');
-        $slug = SlugService::createSlug(Inventory::class, 'slug', $vietnamese);
         error_log("POST: =>".$fullpath);
         if(empty($fullpath)){
             $fullpath = "<p></p>";
@@ -70,7 +73,7 @@ class AdminController extends Controller
         $inventory->link = $link;
         $inventory->stream = $stream;
         $inventory->production = $production;
-        $inventory->slug = $slug;
+        $inventory->lenght = $lenght;
         //set sesion laravel:
         session(['inventory'=>$inventory]);
         //check AJAX file upload:
