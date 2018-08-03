@@ -50,6 +50,7 @@ Route::prefix('redirect')->group(function () {
 
 //go Home page
 Route::get('/goHome', 'RedirectController@goHome');
+Route::get('/test', 'MovieController@test');
 
 //go admin page:
 Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'],function () {
@@ -65,5 +66,11 @@ Route::group(['prefix' => 'admin',  'middleware' => 'isAdmin'],function () {
 Route::prefix('movie')->group(function () {
     //go admin page:
     Route::get('/{slug}', 'MovieController@movieDetail');
+});
+
+//go to movie detail
+Route::prefix('watch-movie')->group(function () {
+    //go admin page:
+    Route::get('/{slug}', 'MovieController@watch');
 });
 

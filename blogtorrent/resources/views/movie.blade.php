@@ -72,7 +72,7 @@
 						<div class='description_content' style="align-items: center; text-align: center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-success btn-lg" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-magnet" aria-hidden="true"></i> Magnet</button>
-								<button type="button" class="btn btn-primary btn-lg" style="border-radius: 0px"><i class="fa fa-file-video-o" aria-hidden="true"></i> Xem phim</button>
+								<a href="{{action('MovieController@watch',$movie->slug)}}" type="button" class="btn btn-primary btn-lg" style="border-radius: 0px"><i class="fa fa-file-video-o" aria-hidden="true"></i> Xem phim</a>
 							</div>
 						</div> 
 						<!-- end description content -->  
