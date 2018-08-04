@@ -20,7 +20,7 @@ class Inventory extends Model
      * @var array
      */
     protected $fillable = [
-        'inventoryid', 'id', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','production','resolution', 'feedback','categoryid', 'globalid','lenght','file_720','file_1080', 'isadd', 'link', 'stream','slug', 'trailer', 'created'
+        'inventoryid', 'id', 'english', 'vietnamese', 'image', 'file', 'content', 'fullpath', 'idmb', 'year',' director','production','resolution', 'feedback','categoryid', 'globalid','lenght','file_720','file_1080', 'isadd', 'link', 'stream','stream2','slug', 'trailer', 'created'
     ];
 
     /**

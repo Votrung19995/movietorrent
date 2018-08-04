@@ -74,3 +74,9 @@ Route::prefix('watch-movie')->group(function () {
     Route::get('/{slug}', 'MovieController@watch');
 });
 
+//go to movie detail
+Route::prefix('api')->group(function () {
+    //go admin page:
+    Route::get('/getUrl/{url}', 'MovieController@getUrl');
+});
+

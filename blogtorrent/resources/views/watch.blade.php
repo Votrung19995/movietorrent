@@ -30,7 +30,7 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all"/>
-
+	<link href="https://vjs.zencdn.net/7.1.0/video-js.css" rel="stylesheet">
 	<!-- jQuery Plugins -->
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
@@ -39,7 +39,11 @@
     <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.fitvids.js')}}"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/afterglowplayer@1.x"></script>
+	<script src="//cdn.jsdelivr.net/npm/afterglowplayer@1.x"></script>
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+	<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+	<script src="https://vjs.zencdn.net/7.1.0/video.js"></script>
+	
 	<style>
 		ol li a:hover{
 			color: orangered ! important;
@@ -65,16 +69,20 @@
 		</div>
 		<div class="row">
             <div class="col-md-8half" style="margin-top: 0px">
-                    <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="{{$links[0]}}" allowfullscreen></iframe>
-                    </div>
-                    <br>
-                    <div class="btn-group">
+					<video id="MY_VIDEO_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{"fluid": true}' poster="https://znews-photo-td.zadn.vn/w660/Uploaded/spuocaw/2017_08_21/DeadpoolandTheAvengers.jpg">
+						<source src="{{action('MovieController@getUrl',$movie->slug)}}"  type='video/mp4'>
+						<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+					</video>
+					<br><br>
+					<div class="btn-group">
                             @foreach($links as $index => $lk)
                               <a type="button" class="btn btn-danger btn-sm" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</a>
                             @endforeach
                     </div>
-                    <br><br>
+					<script>
+						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });
+					</script>
+					<br><br>
             </div>
 			<div class="col-md-1half" style="margin-top: 0px"></div>
             <div class="col-md-3half thumbnail" style="border-radius: 0px; margin-top: 0px">

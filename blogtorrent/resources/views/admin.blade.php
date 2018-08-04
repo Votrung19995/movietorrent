@@ -243,6 +243,10 @@
                       <label>Link stream online</label>
                       <input type="text" value="{{$inventory->stream}}" name="stream" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
+                    <div class="form-group col-md-12">
+                        <label>Link stream online (2)</label>
+                        <input type="text" value="{{$inventory->stream2}}" name="stream2" class="form-control" placeholder="Vui lòng nhập vào">
+                      </div>
                     <div class="form-group col-md-12"> 
                         <label for="english">Upload files (max 2 file)</label>
                         <div class="dropzone" id="my-dropzone" name="myDropzone"></div>

@@ -10,6 +10,8 @@ use DateTime;
 use Config;
 use Illuminate\Support\Facades\Crypt;
 use App\GibberishAES;
+use Redirect;
+use Response;
 
 
 class MovieController extends Controller
@@ -38,6 +40,7 @@ class MovieController extends Controller
     
     //watch movie:
     public function watch($slug){
+        $api = 'http://banhtv.net/api/getlink.php?url=';
         $movie = Inventory::where('slug',$slug)->first();
         $pass =  'phimbathu.com'.'4590481877';
         $decodes = [];
@@ -46,7 +49,7 @@ class MovieController extends Controller
             $streamLink = $movie->stream;
             $curl = $this->curl($streamLink);
             $id = $this->getIdMovie($curl);
-            $links = $this->getVideos($curl);
+            $links = $this->getVideosStream($curl);
             //check decode:
             if(!empty($links)){
                 foreach($links as $link){
@@ -66,15 +69,23 @@ class MovieController extends Controller
 
         //check link:
         if(!empty($decodes)){
-            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name));
+            $test = $this->curl($api.$movie->stream2);
+            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name,'test'=>$test));
         }
         else{
             return "<script>alert('Link xem chưa được cập nhật!');widow.location.href='/movie/.$slug'</script>";
         }
     }
 
-    //get video 720 p:
-    public function getVideos($curlString){
+    //api get content movie:
+    public function getUrl($url){
+        $api = 'http://banhtv.net/api/getlink.php?url=';
+        $movie = Inventory::where('slug',$url)->first();
+        return Redirect::to($this->getVideosStream2($this->curl($api.$movie->stream2)));
+    }
+
+    //get videos stream 720 p:
+    public function getVideosStream($curlString){
         preg_match_all("/\"file\":\"([^\"]+)(\",\"type\":\"mp4\",\"label\":\"720p\")+/", $curlString, $matches);
         $arrays = $matches[1];
         $links = [];
@@ -90,6 +101,35 @@ class MovieController extends Controller
            }
         }
         return $links;
+    }
+
+    //get videos stream 720 p:
+    public function getVideosStream2($curlString){
+        preg_match_all("/\"file\":\"([^\"]+)/",$curlString, $matches);
+        $arrays = $matches[1];
+        $link = '';
+         //foreach:
+        if(!empty($arrays)){
+           //forech get value array:
+           foreach($arrays as $ar){
+               error_log('=======> REPLACE:'.str_replace("\\","",$ar));
+               $replace = str_replace("\\","",$ar);
+               if(!empty($replace)){
+                   if($this->checkFile($replace)){
+                       $link = $replace;
+                   }
+               }
+           }
+        }
+        return $link;
+    }
+
+    //check link
+    public function checkFile($file){
+        if (strpos($file, 'api.bilutv.com')) {
+            return true;
+        }
+        return false;
     }
 
     //get ID movie:
@@ -133,5 +173,22 @@ class MovieController extends Controller
         curl_close ($ch);
 
         return $result;
+    }
+
+    function get_real_url($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        $html = curl_exec($ch);
+        $url = curl_getinfo($ch,CURLINFO_EFFECTIVE_URL );
+        curl_close($ch);
+    
+        return $url;
     }
 }

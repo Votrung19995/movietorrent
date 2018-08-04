@@ -49,6 +49,7 @@ class AdminController extends Controller
         $trailer = $request->input('trailer');
         $link = $request->input('link');
         $stream = $request->input('stream');
+        $stream2 = $request->input('stream2');
         $lenght = $request->input('lenght');
         $production = $request->input('production');
         error_log("POST: =>".$fullpath);
@@ -72,6 +73,7 @@ class AdminController extends Controller
         $inventory->trailer = $trailer;
         $inventory->link = $link;
         $inventory->stream = $stream;
+        $inventory->stream2 = $stream2;
         $inventory->production = $production;
         $inventory->lenght = $lenght;
         //set sesion laravel:
