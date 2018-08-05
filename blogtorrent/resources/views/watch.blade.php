@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <title>Xem phim {{$movie->vietnamese}}</title>
@@ -30,7 +31,7 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="https://vjs.zencdn.net/7.1.0/video-js.css" rel="stylesheet">
+	<link href="{{asset('css/video.css')}}" rel="stylesheet">
 	<!-- jQuery Plugins -->
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
@@ -68,25 +69,22 @@
 				</nav>
 		</div>
 		<div class="row">
-            <div class="col-md-8half" style="margin-top: 0px">
+            <div class="col-md-12half" style="margin-top: 0px">
 					<video id="MY_VIDEO_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{"fluid": true}' poster="https://znews-photo-td.zadn.vn/w660/Uploaded/spuocaw/2017_08_21/DeadpoolandTheAvengers.jpg">
-						<source src="{{action('MovieController@getUrl',$movie->slug)}}"  type='video/mp4'>
+						<source src="{{url('/api/get/'.$movie->slug.'/?url='.$encript)}}"  type='video/mp4'>
 						<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 					</video>
-					<br><br>
+					<br>
 					<div class="btn-group">
                             @foreach($links as $index => $lk)
-                              <a type="button" class="btn btn-danger btn-sm" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</a>
+                              <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-primary btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
                             @endforeach
                     </div>
 					<script>
 						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });
 					</script>
 					<br><br>
-            </div>
-			<div class="col-md-1half" style="margin-top: 0px"></div>
-            <div class="col-md-3half thumbnail" style="border-radius: 0px; margin-top: 0px">
-                  <img src="https://gaja.vn/wp-content/uploads/2016/07/quangcaotreninternet.png" class="img-fluid"/>
+					<input type="hidden" id="serverId" value="{{$serverId}}"/>
             </div>
 		</div>
 		
@@ -99,7 +97,6 @@
 	<!-- /Back to top -->
 
 	{{-- //hiden h1: --}}
-
 	<script>
 		$('#back-to-top').each(function(){
 			$(this).click(function(){ 
@@ -113,6 +110,29 @@
 		$('#searchbox').fadeIn(1000);
 		$('#trailer').fadeIn(2500);
 		$('#new').fadeIn(2500);
+		//get link play stream:
+		var serverId = $('#serverId').val();
+		//setactive playing:
+		$("#server-"+serverId).removeClass("btn btn-primary btn-sm")
+		$("#server-"+serverId).addClass("btn btn-primary btn-sm active");
+		function setLinkStream(serVerid){
+				$.ajaxSetup({
+					headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+				$.ajax({
+					url: "/watch-movie/link/"+serVerid,
+					type: "post",
+					success: function (response) {                
+			            console.log(response);
+						window.location.reload();
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+					   console.log(textStatus, errorThrown);
+					}
+				});
+		}
 	</script>
 
 </body>

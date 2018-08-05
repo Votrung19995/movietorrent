@@ -18,6 +18,9 @@ class MovieController extends Controller
 {
     //go to movie detail:
     public function movieDetail(Request $request, $slug){
+        //remove session:
+        session()->forget('serverId');
+        session()->forget('links');
         //get current day:
         $currentDay = new DateTime();
         $detail = Inventory::where('slug','=',$slug)->first();
@@ -40,10 +43,26 @@ class MovieController extends Controller
     
     //watch movie:
     public function watch($slug){
+        //set slug:
+        $sec = session('serverId');
+        $serverId = 0;
+		if(!empty($sec)){
+			$serverId = $sec->globalid;
+		}
+        $passAES = 'phimtorrent';
         $api = 'http://banhtv.net/api/getlink.php?url=';
         $movie = Inventory::where('slug',$slug)->first();
+        $key = $movie->slug;
+        $encript = GibberishAES::enc($key,$passAES);
+        error_log('+++++++++ EN SCRIPT:  '.$encript);
+        error_log('ENCRIPT LENGHT: '.strlen($encript));
+        error_log('------------------->DE SLUG:  '.GibberishAES::dec($encript,$passAES));
         $pass =  'phimbathu.com'.'4590481877';
         $decodes = [];
+        $stream1 = $this->getVideosStream2($this->curl($api.$movie->stream2));
+        if(!empty($stream1)){
+            array_push($decodes,$stream1);
+        }
         //get movie:
         if(!empty($movie)){
             $streamLink = $movie->stream;
@@ -62,6 +81,9 @@ class MovieController extends Controller
             }
         }
 
+        //set session links:
+        session(['links' => $decodes]);
+
         //get category:
         $category = Category::where('categoryid',$movie->categoryid)->first();
         //get global:
@@ -70,18 +92,54 @@ class MovieController extends Controller
         //check link:
         if(!empty($decodes)){
             $test = $this->curl($api.$movie->stream2);
-            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name,'test'=>$test));
+            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name,'test'=>$test, 'encript'=>$encript, 'serverId'=>$serverId));
         }
         else{
-            return "<script>alert('Link xem chưa được cập nhật!');widow.location.href='/movie/.$slug'</script>";
+            return "<script>alert('Link xem chưa được cập nhật!');history.back(-2)'</script>";
         }
     }
 
+    //get link stream:
+    public function link(Request $request, $serverId){
+        $sec = new Glo;
+        if($request->ajax()){
+           error_log('++++++++++++++++++++ FROM AJAX: '.$serverId);
+           //save session:
+           $sec->globalid = $serverId;
+           session(['serverId' => $sec]);
+           return 'OK'.$serverId;
+        }
+        else{
+            // NOTING
+        }
+    }
+    
     //api get content movie:
-    public function getUrl($url){
-        $api = 'http://banhtv.net/api/getlink.php?url=';
-        $movie = Inventory::where('slug',$url)->first();
-        return Redirect::to($this->getVideosStream2($this->curl($api.$movie->stream2)));
+    public function getUrl($slug, Request $request){
+        //get links stream:
+        $links = session('links');
+        //set slug:
+        $sec = session('serverId');
+        $serverId = 0;
+		if(!empty($sec)){
+			$serverId = $sec->globalid;
+        }
+        
+        if(!empty($links)){
+            $pass = 'phimtorrent';
+            $url = $_GET['url'];
+            error_log('========> UR L'.$url);
+            error_log('{{{{{{{ INDEX: '.$serverId);
+            $api = 'http://banhtv.net/api/getlink.php?url=';
+            $decript = GibberishAES::dec($url, $pass);
+            error_log('????????????????? ENCRIPT: '.$decript);
+            $movie = Inventory::where('slug',$slug)->first();
+            error_log(':::::::::::::::::::::LINK STREM:'.$links[$serverId]);
+            return Redirect::to($links[0]);
+        }
+        else{
+            return 'Link stream no found!';
+        }
     }
 
     //get videos stream 720 p:

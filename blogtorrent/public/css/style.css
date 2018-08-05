@@ -1848,7 +1848,7 @@ h4 { color: #111; font-family: Verdana, sans-serif; font-size: 17px; font-weight
 }
 
 @media (min-width: 768px) {
-    .col-md-8half, .col-md-1half, .col-md-3half {
+    .col-md-8half, .col-md-1half, .col-md-3half, .col-md-12half {
         float: left;
     }
     .col-md-1half {
@@ -1859,6 +1859,9 @@ h4 { color: #111; font-family: Verdana, sans-serif; font-size: 17px; font-weight
     }
     .col-md-8half {
         width:70%;
+    }
+    .col-md-12half {
+        width:100%;
     }
 }
 

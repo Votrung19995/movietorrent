@@ -71,8 +71,8 @@
 						<!-- description content -->  
 						<div class='description_content' style="align-items: center; text-align: center">
 							<div class="btn-group">
-								<button type="button" class="btn btn-success btn-lg" style="margin-right: 10px; border-radius: 0px"><i class="fa fa-magnet" aria-hidden="true"></i> Magnet</button>
-								<a href="{{action('MovieController@watch',$movie->slug)}}" type="button" class="btn btn-primary btn-lg" style="border-radius: 0px"><i class="fa fa-file-video-o" aria-hidden="true"></i> Xem phim</a>
+								<button type="button" class="btn btn-success btn-lg" style="margin-right: 10px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-magnet" aria-hidden="true"></i> Magnet</button>
+								<a href="{{action('MovieController@watch',$movie->slug)}}" type="button" class="btn btn-primary btn-lg" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-file-video-o" aria-hidden="true"></i> Xem phim</a>
 							</div>
 						</div> 
 						<!-- end description content -->  
@@ -144,16 +144,16 @@
 					   <h5>Tải về torrent: 
 							@if(!empty($movie->file_720)&&!empty($movie->file_1080) )
 								<div class="btn-group" style="margin-top: 10px">
-										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
-										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
+										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
+										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
 								</div>
 							@elseif(!empty($movie->file_720)&&empty($movie->file_1080))
 								<div class="btn-group" style="margin-top: 10px">
-										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
+										<a type="button" href="{{url('/resources/files/'.$movie->file_720)}}" title="Tải về torrent chất lượng 720" class="btn btn-success btn-lg" style="margin-right: 8px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-download" aria-hidden="true"></i> 720 Tải về</a>
 								</div>
 							@elseif(empty($movie->file_720)&&!empty($movie->file_1080))
 							    <div class="btn-group" style="margin-top: 10px">
-										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-radius: 0px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
+										<a type="button" href="{{url('/resources/files/'.$movie->file_1080)}}"  title="Tải về torrent chất lượng 1080" class="btn btn-success btn-lg" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-download" aria-hidden="true"></i> 1080 Tải về </a>
 								</div>
 							@else
 								<small style="font-size: 12px;font-weight: bold">Chưa cập nhật torrent</small>

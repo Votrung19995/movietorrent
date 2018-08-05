@@ -72,11 +72,13 @@ Route::prefix('movie')->group(function () {
 Route::prefix('watch-movie')->group(function () {
     //go admin page:
     Route::get('/{slug}', 'MovieController@watch');
+    //get link stream:
+    Route::post('/link/{serverId}','MovieController@link');
 });
 
 //go to movie detail
 Route::prefix('api')->group(function () {
     //go admin page:
-    Route::get('/getUrl/{url}', 'MovieController@getUrl');
+    Route::get('/get/{slug}', 'MovieController@getUrl');
 });
 
