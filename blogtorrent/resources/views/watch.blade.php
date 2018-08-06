@@ -83,8 +83,20 @@
 					<script>
 						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });
 					</script>
-					<br><br>
+					<br>
 					<input type="hidden" id="serverId" value="{{$serverId}}"/>
+					<h4 style="margin-left: 0px ! important;margin-top: 10px;margin-bottom: 0px ! important;color: #EE471A">{{$movie->vietnamese}}</h4>
+					<small style="margin-top: 0px ! important;font-size: 14px">{{$movie->english}}</small>
+					<h4 style="margin-top: 12px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
+					<div class="thumbnail">
+						<form>
+							<small style="font-size: 16px;margin-top: 5px">20 comments</small>
+							<div class="form-group" style="margin-top: 5px">
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+							</div>
+							<button class="btn btn-success" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Đăng ngay</button>
+						</form>
+					</div>
             </div>
 		</div>
 		

@@ -135,7 +135,7 @@ class MovieController extends Controller
             error_log('????????????????? ENCRIPT: '.$decript);
             $movie = Inventory::where('slug',$slug)->first();
             error_log(':::::::::::::::::::::LINK STREM:'.$links[$serverId]);
-            return Redirect::to($links[0]);
+            return Redirect::to($links[$serverId]);
         }
         else{
             return 'Link stream no found!';
