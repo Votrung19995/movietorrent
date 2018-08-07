@@ -1,1 +1,1 @@
-# movietorrent, stream and downd moive, base on Laravel.
+Stream and downd movie, base on Laravel.
