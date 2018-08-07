@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\GibberishAES;
 use Redirect;
 use Response;
+use Counter;
 
 
 class MovieController extends Controller
@@ -43,6 +44,10 @@ class MovieController extends Controller
     
     //watch movie:
     public function watch($slug){
+        //get current day:
+        $currentDay = new DateTime();
+        //get most viewed movie:
+        $mosts = Inventory::where('categoryid','!=',6)->take(10)->orderBy('count', 'desc')->skip(0)->get();
         //set slug:
         $sec = session('serverId');
         $serverId = 0;
@@ -89,10 +94,18 @@ class MovieController extends Controller
         //get global:
         $global = Glo::where('globalid',$movie->globalid)->first();
 
+        //update counter:
+        //count vistor in page:
+        Counter::count('view-movie', $movie->slug);
+        //get counter of page:
+        $count = Counter::show('view-movie', $movie->slug);
+        error_log($movie->slug.'COUNTER: '.$count);
+        Inventory::where('slug', '=', $movie->slug)->update(['count' => $count]);
+
         //check link:
         if(!empty($decodes)){
             $test = $this->curl($api.$movie->stream2);
-            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name,'test'=>$test, 'encript'=>$encript, 'serverId'=>$serverId));
+            return view('watch')->with(array('movie'=>$movie,'links'=>$decodes,'category'=>$category->name,'global'=>$global->name,'test'=>$test, 'encript'=>$encript, 'serverId'=>$serverId, 'mosts'=>$mosts, 'currentDay'=>$currentDay));
         }
         else{
             return "<script>alert('Link xem chưa được cập nhật!');history.back(-2)'</script>";

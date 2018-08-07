@@ -87,7 +87,65 @@
 					<input type="hidden" id="serverId" value="{{$serverId}}"/>
 					<h4 style="margin-left: 0px ! important;margin-top: 10px;margin-bottom: 0px ! important;color: #EE471A">{{$movie->vietnamese}}</h4>
 					<small style="margin-top: 0px ! important;font-size: 14px">{{$movie->english}}</small>
-					<h4 style="margin-top: 12px; margin-bottom: 5px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
+					<h4 style="margin-top: 20px; margin-bottom: 5px"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Phim xem nhiều</h4>
+					<div class="owl-carousel owl-theme" style="margin-bottom: 0px">
+						@foreach($mosts as $new)
+							<div class="item">
+								<div class="panel panel-default work" style="border-radius:0px;padding: 1px">
+										<!-- wrapper div -->  
+										<div class='wrapper'>
+												<div class="overlay" onclick="window.location.href='/movie/{{$new->slug}}'"></div>
+												<div class="work-content">
+													<div class="work-link">
+														<a href="#"><i class="fa fa-download" aria-hidden="true"></i></i></a>
+														<a href="{{action('MovieController@movieDetail', $new->slug)}}" class="lightbox" href="{{asset('resources/images/'. $new->image)}}" title="{{$new->vietnamese}}"><i class="fa fa-search"></i></a>
+													</div>
+												</div>
+												@php
+													$current_date = strtotime($currentDay->format('Y-m-d'));
+													$created_date = strtotime(date("Y-m-d", strtotime($new->created)));
+													$datediff = abs($current_date - $created_date);
+													$dateConvert = floor($datediff / (60*60*24));
+												@endphp
+												@if($dateConvert <= 14)
+												<div class="bxitem-newmovie"></div>
+												@endif
+												<!-- image -->  
+												<img src='{{asset('resources/images/'. $new->image)}}' style="width: 100%;height: 325px" />  
+												<!-- description div -->  
+												<div class='description'>  
+													<!-- description content -->  
+													<div class='description_content'> {{$new->vietnamese}} <p style="color: #F4D03F"><small>{{$new->english}}</small></p> </div>  
+													<!-- end description content -->  
+												</div>  
+												<!-- end description div -->  
+										</div>  
+										<!-- end wrapper div --> 
+								</div>
+						</div>
+						@endforeach
+					</div>
+					<script>
+							$('.owl-carousel').owlCarousel({
+								loop:true,
+								margin:5,
+								nav:true,
+								responsive:{
+									0:{
+										items:2
+									},
+									600:{
+										items:4
+									},
+									1000:{
+										items:5
+									}
+								},
+								autoplay:true,
+								autoplayTimeout:8000
+							});
+					</script>
+					<h4 style="margin-bottom: 5px; margin-top: 0px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
 					<div class="thumbnail" style="padding: 20px">
 						<div id="disqus_thread"></div>
 						<script>

@@ -106,12 +106,8 @@
 								<small style="font-size: 12px;font-weight: bold">chưa có</small>
 							@endif
 					   </h5>
-					   <h5>Năm sản xuất: 
-							@if(!empty($movie->year))
-							    <a href="#" style="color: #5499C7"><small style="font-size: 12px;font-weight: bold;">{{$movie->year}}</small></a>
-							@else
-								<small style="font-size: 12px;font-weight: bold">chưa có</small>
-							@endif
+					   <h5>Lượt xem: 
+						 <a href="#" style="color: #0B7065"><small style="font-size: 14px;font-weight: bold;">{{Counter::show('view-movie',$movie->slug)}}</small></a>
 					   </h5>
 					   <h5>Thời lượng phim: 
 							@if(!empty($movie->lenght))
