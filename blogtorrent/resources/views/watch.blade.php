@@ -87,7 +87,7 @@
 					<input type="hidden" id="serverId" value="{{$serverId}}"/>
 					<h4 style="margin-left: 0px ! important;margin-top: 10px;margin-bottom: 0px ! important;color: #EE471A">{{$movie->vietnamese}}</h4>
 					<small style="margin-top: 0px ! important;font-size: 14px">{{$movie->english}}</small>
-					<h4 style="margin-top: 12px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
+					<h4 style="margin-top: 12px; margin-bottom: 5px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
 					<div class="thumbnail" style="padding: 20px">
 						<div id="disqus_thread"></div>
 						<script>
