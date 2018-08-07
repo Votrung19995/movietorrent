@@ -88,14 +88,22 @@
 					<h4 style="margin-left: 0px ! important;margin-top: 10px;margin-bottom: 0px ! important;color: #EE471A">{{$movie->vietnamese}}</h4>
 					<small style="margin-top: 0px ! important;font-size: 14px">{{$movie->english}}</small>
 					<h4 style="margin-top: 12px"><i class="fa fa-commenting-o" aria-hidden="true"></i> Bình luận</h4>
-					<div class="thumbnail">
-						<form>
-							<small style="font-size: 16px;margin-top: 5px">20 comments</small>
-							<div class="form-group" style="margin-top: 5px">
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
-							</div>
-							<button class="btn btn-success" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Đăng ngay</button>
-						</form>
+					<div class="thumbnail" style="padding: 20px">
+						<div id="disqus_thread"></div>
+						<script>
+							var disqus_config = function () {
+							this.page.url = '{{ Request::url() }}';  // Replace PAGE_URL with your page's canonical URL variable
+							this.page.identifier = '{{$movie->slug}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+							};
+							
+							(function() { // DON'T EDIT BELOW THIS LINE
+							var d = document, s = d.createElement('script');
+							s.src = 'https://movie-comments-1.disqus.com/embed.js';
+							s.setAttribute('data-timestamp', +new Date());
+							(d.head || d.body).appendChild(s);
+							})();
+						</script>
+						<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 					</div>
             </div>
 		</div>
