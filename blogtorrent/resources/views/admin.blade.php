@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Quản lý</title>
-  <link rel="shortcut icon" href="{{asset('img/icon.png')}}">
+  <link rel="shortcut icon" href="{{asset('img/h5-new.png')}}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -240,11 +240,11 @@
                       <input type="text" value="{{$inventory->link}}" name="link" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
                     <div class="form-group col-md-12">
-                      <label>Link stream online</label>
+                      <label>Link việt sub</label>
                       <input type="text" value="{{$inventory->stream}}" name="stream" class="form-control" placeholder="Vui lòng nhập vào">
                     </div>
                     <div class="form-group col-md-12">
-                        <label>Link stream online (2)</label>
+                        <label>Link thuyết minh</label>
                         <input type="text" value="{{$inventory->stream2}}" name="stream2" class="form-control" placeholder="Vui lòng nhập vào">
                       </div>
                     <div class="form-group col-md-12"> 

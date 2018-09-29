@@ -71,14 +71,18 @@
 		<div class="row">
             <div class="col-md-12half" style="margin-top: 0px">
 					<video id="MY_VIDEO_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{"fluid": true}' poster="https://znews-photo-td.zadn.vn/w660/Uploaded/spuocaw/2017_08_21/DeadpoolandTheAvengers.jpg">
-						<source src="{{url('/api/get/'.$movie->slug.'/?url='.$encript)}}"  type='video/mp4'>
+					<source src="{{$play}}"  type='video/mp4'>
 						<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 					</video>
 					<br>
 					<div class="btn-group">
                             @foreach($links as $index => $lk)
-                              <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-primary btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
-                            @endforeach
+							   @if($index%2 == 0)
+							      <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-primary btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
+							   @else
+					              <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-success btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
+							   @endif
+							@endforeach
                     </div>
 					<script>
 						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });
