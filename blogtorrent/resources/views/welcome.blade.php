@@ -49,7 +49,7 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 id ="newmovie" class="text-mutex" style="display: none">Bạn cũng có thể xem <img style="margin-bottom: 3px" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id ="newmovie" class="text-mutex" style="display: none">Bạn cũng có thể xem <img style="margin-bottom: 3px;height: 30px;width: 30px" src="http://home.iitk.ac.in/~basker/images/NewAlt.gif"/></h4>
                     </div>
                 </div>
                 <div class="row">
@@ -119,7 +119,7 @@
 				<br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 id="new" class="text-mutex" style="display: none">Phim chiếu rạp mới  <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id="new" class="text-mutex" style="display: none">Phim chiếu rạp mới   <img style="margin-bottom: 3px;height: 30px;width: 30px" src="http://home.iitk.ac.in/~basker/images/NewAlt.gif"/></h4>
 					</div>
 					<div class="col-md-8">
 							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -167,7 +167,7 @@
 				<br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 id="updatemovie" class="text-mutex" style="display: none">Phim chiếu rạp cập nhật <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id="updatemovie" class="text-mutex" style="display: none">Phim chiếu rạp cập nhật  <img style="margin-bottom: 3px;height: 30px;width: 30px" src="http://home.iitk.ac.in/~basker/images/NewAlt.gif"/></h4>
 					</div>
 					<div class="col-md-8">
 							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -215,7 +215,7 @@
 				<br>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 id="trailer" class="text-mutex" style="display: none">Phim sắp chiếu (Trailer) <img style="margin-bottom: 3px;" src="http://muabangiatot.tk/resources/images/new.gif"/></h4>
+                        <h4 id="trailer" class="text-mutex" style="display: none">Phim sắp chiếu (Trailer)  <img style="margin-bottom: 3px;height: 30px;width: 30px" src="http://home.iitk.ac.in/~basker/images/NewAlt.gif"/></h4>
 					</div>
 					<div class="col-md-8">
 							<a href="#" class="pull-right hov" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 35px; font-weight: 550;">Xem thêm <i class="fa fa-angle-right" aria-hidden="true"></i></a>
