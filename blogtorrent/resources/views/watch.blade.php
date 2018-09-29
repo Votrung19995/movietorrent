@@ -87,7 +87,7 @@
 					<script>
 						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });
 					</script>
-					<br>
+					<br><br>
 					<input type="hidden" id="serverId" value="{{$serverId}}"/>
 					<h4 style="margin-left: 0px ! important;margin-top: 10px;margin-bottom: 0px ! important;color: #EE471A">{{$movie->vietnamese}}</h4>
 					<small style="margin-top: 0px ! important;font-size: 14px">{{$movie->english}}</small>
