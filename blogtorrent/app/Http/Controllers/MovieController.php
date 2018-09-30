@@ -70,18 +70,23 @@ class MovieController extends Controller
         Inventory::where('slug', '=', $movie->slug)->update(['count' => $count]);
         //get array links stream:
         $streams = [];
+        $vietsub = '';
+        $thuyetminh = '';
         if(strlen($movie->stream) > 0) {
-           error_log('LENGHT 1: '.strlen($movie->stream));
            array_push($streams, $movie->stream);
+           $vietsub = 'true';
+           error_log('-----> HAVE SUB!!!!!');
         }
         if(strlen($movie->stream2) > 0){
            array_push($streams, $movie->stream2);
+           $thuyetminh = 'true';
+           error_log('-----> HAVE THUYET MINH!!!!!');
         }
         //get user_token:
         $userToken = UserToken::get()->first();
         $sources = [];
         if(count($streams) > 0){
-            $sources =  $this->getSourceVideo($userToken->app_id, $userToken->app_secret,$streams, $userToken->access_token);
+            $sources =  $this->getSourceVideo($userToken->app_id, $userToken->app_secret,$streams,$userToken->prefix_server, $userToken->access_token);
         }
         //get araay link stream:
         if(count($sources) == 0){
@@ -90,14 +95,14 @@ class MovieController extends Controller
         }
         //check link:
         if(!empty($movie)){
-            return view('watch')->with(array('movie'=>$movie,'category'=>$category->name,'play'=> $sources[$serverId],'links'=> $sources,'global'=>$global->name,'serverId'=>$serverId, 'mosts'=>$mosts, 'currentDay'=>$currentDay));
+            return view('watch')->with(array('movie'=>$movie,'category'=>$category->name,'play'=> $sources[$serverId],'global'=>$global->name,'serverId'=>$serverId, 'mosts'=>$mosts, 'currentDay'=>$currentDay, 'vietsub' => $vietsub, 'thuyetminh' => $thuyetminh));
         }
         else{
             return "<script>alert('Link xem chưa được cập nhật!');history.back(-2)'</script>";
         }
     }
 
-    public function getSourceVideo($appID, $appSecret, $streams, $accees_token){
+    public function getSourceVideo($appID, $appSecret, $streams, $prefix_server, $accees_token){
         $links = [];
         //call facebook api:
         $fb = $this->initFaceBookAPI($appID, $appSecret);
@@ -120,7 +125,7 @@ class MovieController extends Controller
                     exit;
                 }
                 $graphNode = $response->getGraphNode();
-                $link = $this->getLinkStream($graphNode);
+                $link = $this->getLinkStream($graphNode, $prefix_server);
                 if(!empty($link)){
                     array_push($links, $link);
                 }
@@ -144,7 +149,7 @@ class MovieController extends Controller
     }
 
      //get videos stream 720 p:
-     public function getLinkStream($response){
+     public function getLinkStream($response, $prefix_server){
         preg_match_all("/\"source\":\"([^\"]+)/", $response, $matches);
         $arrays = $matches[1];
         $link = '';
@@ -155,6 +160,9 @@ class MovieController extends Controller
                $link = str_replace("\\","",$ar);
            }
         }
+        //replace server what load video content:
+        $link = preg_replace("/video([^\"]+)fbcdn.net/", $prefix_server , $link);
+        error_log('++++++++++ LINK REGEX: '.$link);
         return $link;
     }
 

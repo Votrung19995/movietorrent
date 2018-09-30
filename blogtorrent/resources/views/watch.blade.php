@@ -76,13 +76,13 @@
 					</video>
 					<br>
 					<div class="btn-group">
-                            @foreach($links as $index => $lk)
-							   @if($index%2 == 0)
-							      <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-primary btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
-							   @else
-					              <button id="server-{{$index}}" type="button" onclick="setLinkStream({{$index}})" class="btn btn-success btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - {{$index + 1}}</button>
-							   @endif
-							@endforeach
+						@if(strlen($vietsub) > 0)
+						    <button id="server-0" type="button" onclick="setLinkStream(0)" class="btn btn-primary btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - Vietsub</button>
+						@endif
+
+						@if(strlen($thuyetminh) > 0)
+							<button id="server-1" type="button" onclick="setLinkStream(1)" class="btn btn-success btn-sm" style="margin-right: 10px;border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px"><i class="fa fa-link" aria-hidden="true"></i> Server - Thuyết minh</button>
+						@endif
                     </div>
 					<script>
 						videojs('MY_VIDEO_1',{ "controls": true, "autoplay": true, "preload": "auto",  "muted": true });

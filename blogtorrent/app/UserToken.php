@@ -18,7 +18,7 @@ class UserToken extends Model
      * @var array
      */
     protected $fillable = [
-        'id','access_token', 'app_id', 'app_secret'
+        'id','access_token', 'app_id', 'app_secret', 'prefix_server'
     ];
    
     public $timestamps = false;
